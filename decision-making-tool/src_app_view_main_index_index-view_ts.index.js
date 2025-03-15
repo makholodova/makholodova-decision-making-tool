@@ -1,4 +1,12 @@
 "use strict";
+/*
+ * ATTENTION: The "eval" devtool has been used (maybe by default in mode: "development").
+ * This devtool is neither made for production nor for readable output files.
+ * It uses "eval()" calls to create a separate source file in the browser devtools.
+ * If you are trying to read the output file, select a different devtool (https://webpack.js.org/configuration/devtool/)
+ * or disable the default devtool with "devtool: false".
+ * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
+ */
 (self["webpackChunk"] = self["webpackChunk"] || []).push([["src_app_view_main_index_index-view_ts"],{
 
 /***/ "./src/app/components/paste-list-modal.ts":
@@ -7,133 +15,7 @@
   \************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   PasteListModal: () => (/* binding */ PasteListModal)
-/* harmony export */ });
-/* harmony import */ var _until_element_creator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../until/element-creator */ "./src/app/until/element-creator.ts");
-/* harmony import */ var _until_parse_from_csv__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../until/parse-from-csv */ "./src/app/until/parse-from-csv.ts");
-
-
-const dialogParameters = {
-    tag: 'dialog',
-    classNames: ['dialog'],
-};
-const formParameters = {
-    tag: 'form',
-    classNames: ['form'],
-    callback: (event) => {
-        event.preventDefault();
-    },
-};
-const textareaParameters = {
-    tag: 'textarea',
-    classNames: ['textarea'],
-    attributes: {
-        placeholder: 'textarea',
-        name: 'table',
-        rows: '12',
-        cols: '64',
-    },
-};
-class PasteListModal extends _until_element_creator__WEBPACK_IMPORTED_MODULE_0__.ElementCreator {
-    constructor(onConfirm) {
-        super(dialogParameters);
-        this.onConfirmCallback = onConfirm;
-        this.form = new _until_element_creator__WEBPACK_IMPORTED_MODULE_0__.ElementCreator(formParameters);
-        this.textarea = new _until_element_creator__WEBPACK_IMPORTED_MODULE_0__.ElementCreator(textareaParameters);
-        const cancelButtonParameters = {
-            tag: 'button',
-            classNames: ['button', 'cancel-button'],
-            textContent: 'Cancel',
-            attributes: {
-                type: 'button',
-            },
-            callback: this.close.bind(this),
-        };
-        const confirmButtonParameters = {
-            tag: 'button',
-            classNames: ['button', 'confirm-button'],
-            textContent: 'Confirm',
-            callback: () => {
-                this.handleConfirm();
-            },
-        };
-        this.cancelButton = new _until_element_creator__WEBPACK_IMPORTED_MODULE_0__.ElementCreator(cancelButtonParameters);
-        this.confirmButton = new _until_element_creator__WEBPACK_IMPORTED_MODULE_0__.ElementCreator(confirmButtonParameters);
-        this.addInnerElement(this.form);
-        this.form.addInnerElement(this.textarea);
-        this.form.addInnerElement(this.cancelButton);
-        this.form.addInnerElement(this.confirmButton);
-        this.setupEventListeners();
-    }
-    show() {
-        const element = this.getElement();
-        if (element instanceof HTMLDialogElement) {
-            element.showModal();
-        }
-    }
-    close() {
-        const element = this.getElement();
-        if (element instanceof HTMLDialogElement) {
-            element.close();
-        }
-        this.element.remove();
-    }
-    setupEventListeners() {
-        const element = this.getElement();
-        if (element instanceof HTMLDialogElement) {
-            element.addEventListener('click', (event) => {
-                if (event.target === element) {
-                    this.close();
-                }
-            });
-            element.addEventListener('keydown', (event) => {
-                if (event.key === 'Escape') {
-                    this.close();
-                }
-            });
-        }
-    }
-    /*public parseFromCSV(csv: string): { title: string; weight?: string }[] {
-      if (!csv) return [];
-  
-      const result: { title: string; weight?: string }[] = [];
-  
-      csv.split('\n').forEach((line: string): void => {
-        const fields = line.split(/[\t,]\s*!/);
-        if (fields.length === 0) return;
-  
-        let weight: string | undefined;
-        let title = fields.slice(0, -1).join(' ').trim();
-  
-        const lastField = fields.at(-1);
-        if (isNaN(Number(lastField))) {
-          title = fields.join(' ').trim();
-        } else {
-          weight = lastField;
-        }
-  
-        result.push({ title, weight });
-      });
-  
-      return result;
-    }*/
-    getValueTextarea() {
-        const csvElement = this.textarea.getElement();
-        return csvElement instanceof HTMLTextAreaElement ? csvElement.value : '';
-    }
-    handleConfirm() {
-        const parsedData = (0,_until_parse_from_csv__WEBPACK_IMPORTED_MODULE_1__.parseFromCSV)(this.getValueTextarea());
-        this.onConfirmCallback(parsedData);
-        const textareaElement = this.textarea.getElement();
-        if (textareaElement instanceof HTMLTextAreaElement) {
-            textareaElement.value = '';
-        }
-        this.close();
-    }
-}
-
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   PasteListModal: () => (/* binding */ PasteListModal)\n/* harmony export */ });\n/* harmony import */ var _until_element_creator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../until/element-creator */ \"./src/app/until/element-creator.ts\");\n/* harmony import */ var _until_parse_from_csv__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../until/parse-from-csv */ \"./src/app/until/parse-from-csv.ts\");\n\n\nconst dialogParameters = {\n    tag: 'dialog',\n    classNames: ['dialog'],\n};\nconst formParameters = {\n    tag: 'form',\n    classNames: ['form'],\n    callback: (event) => {\n        event.preventDefault();\n    },\n};\nconst textareaParameters = {\n    tag: 'textarea',\n    classNames: ['textarea'],\n    attributes: {\n        placeholder: 'textarea',\n        name: 'table',\n        rows: '12',\n        cols: '64',\n    },\n};\nclass PasteListModal extends _until_element_creator__WEBPACK_IMPORTED_MODULE_0__.ElementCreator {\n    constructor(onConfirm) {\n        super(dialogParameters);\n        this.onConfirmCallback = onConfirm;\n        this.form = new _until_element_creator__WEBPACK_IMPORTED_MODULE_0__.ElementCreator(formParameters);\n        this.textarea = new _until_element_creator__WEBPACK_IMPORTED_MODULE_0__.ElementCreator(textareaParameters);\n        const cancelButtonParameters = {\n            tag: 'button',\n            classNames: ['button', 'cancel-button'],\n            textContent: 'Cancel',\n            attributes: {\n                type: 'button',\n            },\n            callback: this.close.bind(this),\n        };\n        const confirmButtonParameters = {\n            tag: 'button',\n            classNames: ['button', 'confirm-button'],\n            textContent: 'Confirm',\n            callback: () => {\n                this.handleConfirm();\n            },\n        };\n        this.cancelButton = new _until_element_creator__WEBPACK_IMPORTED_MODULE_0__.ElementCreator(cancelButtonParameters);\n        this.confirmButton = new _until_element_creator__WEBPACK_IMPORTED_MODULE_0__.ElementCreator(confirmButtonParameters);\n        this.addInnerElement(this.form);\n        this.form.addInnerElement(this.textarea);\n        this.form.addInnerElement(this.cancelButton);\n        this.form.addInnerElement(this.confirmButton);\n        this.setupEventListeners();\n    }\n    show() {\n        const element = this.getElement();\n        if (element instanceof HTMLDialogElement) {\n            element.showModal();\n        }\n    }\n    close() {\n        const element = this.getElement();\n        if (element instanceof HTMLDialogElement) {\n            element.close();\n        }\n        this.element.remove();\n    }\n    setupEventListeners() {\n        const element = this.getElement();\n        if (element instanceof HTMLDialogElement) {\n            element.addEventListener('click', (event) => {\n                if (event.target === element) {\n                    this.close();\n                }\n            });\n            element.addEventListener('keydown', (event) => {\n                if (event.key === 'Escape') {\n                    this.close();\n                }\n            });\n        }\n    }\n    /*public parseFromCSV(csv: string): { title: string; weight?: string }[] {\n      if (!csv) return [];\n  \n      const result: { title: string; weight?: string }[] = [];\n  \n      csv.split('\\n').forEach((line: string): void => {\n        const fields = line.split(/[\\t,]\\s*!/);\n        if (fields.length === 0) return;\n  \n        let weight: string | undefined;\n        let title = fields.slice(0, -1).join(' ').trim();\n  \n        const lastField = fields.at(-1);\n        if (isNaN(Number(lastField))) {\n          title = fields.join(' ').trim();\n        } else {\n          weight = lastField;\n        }\n  \n        result.push({ title, weight });\n      });\n  \n      return result;\n    }*/\n    getValueTextarea() {\n        const csvElement = this.textarea.getElement();\n        return csvElement instanceof HTMLTextAreaElement ? csvElement.value : '';\n    }\n    handleConfirm() {\n        const parsedData = (0,_until_parse_from_csv__WEBPACK_IMPORTED_MODULE_1__.parseFromCSV)(this.getValueTextarea());\n        this.onConfirmCallback(parsedData);\n        const textareaElement = this.textarea.getElement();\n        if (textareaElement instanceof HTMLTextAreaElement) {\n            textareaElement.value = '';\n        }\n        this.close();\n    }\n}\n\n\n//# sourceURL=webpack:///./src/app/components/paste-list-modal.ts?");
 
 /***/ }),
 
@@ -143,79 +25,7 @@ class PasteListModal extends _until_element_creator__WEBPACK_IMPORTED_MODULE_0__
   \***************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   ValidOptionsModal: () => (/* binding */ ValidOptionsModal)
-/* harmony export */ });
-/* harmony import */ var _until_element_creator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../until/element-creator */ "./src/app/until/element-creator.ts");
-
-const dialogParameters = {
-    tag: 'dialog',
-    classNames: ['dialog'],
-};
-const containerParameters = {
-    tag: 'div',
-    classNames: ['modal-container'],
-};
-const titleParameters = {
-    tag: 'h3',
-    classNames: ['modal-title'],
-    textContent: 'Please add at least 2 valid options',
-};
-const textParameters = {
-    tag: 'p',
-    classNames: ['modal-text'],
-    textContent: 'An option is considered valid if its title is not empty and its weight is greater than 0',
-};
-class ValidOptionsModal extends _until_element_creator__WEBPACK_IMPORTED_MODULE_0__.ElementCreator {
-    constructor() {
-        super(dialogParameters);
-        this.container = new _until_element_creator__WEBPACK_IMPORTED_MODULE_0__.ElementCreator(containerParameters);
-        this.title = new _until_element_creator__WEBPACK_IMPORTED_MODULE_0__.ElementCreator(titleParameters);
-        this.text = new _until_element_creator__WEBPACK_IMPORTED_MODULE_0__.ElementCreator(textParameters);
-        const closeButtonParameters = {
-            tag: 'button',
-            classNames: ['button', 'close-button'],
-            textContent: 'Close',
-            callback: this.close.bind(this),
-        };
-        this.closeButton = new _until_element_creator__WEBPACK_IMPORTED_MODULE_0__.ElementCreator(closeButtonParameters);
-        this.addInnerElement(this.container);
-        this.container.addInnerElement(this.title);
-        this.container.addInnerElement(this.text);
-        this.container.addInnerElement(this.closeButton);
-        this.setupEventListeners();
-    }
-    show() {
-        const element = this.getElement();
-        if (element instanceof HTMLDialogElement) {
-            element.showModal();
-        }
-    }
-    close() {
-        const element = this.getElement();
-        if (element instanceof HTMLDialogElement) {
-            element.close();
-        }
-        this.element.remove();
-    }
-    setupEventListeners() {
-        const element = this.getElement();
-        if (element instanceof HTMLDialogElement) {
-            element.addEventListener('click', (event) => {
-                if (event.target === element) {
-                    this.close();
-                }
-            });
-            element.addEventListener('keydown', (event) => {
-                if (event.key === 'Escape') {
-                    this.close();
-                }
-            });
-        }
-    }
-}
-
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   ValidOptionsModal: () => (/* binding */ ValidOptionsModal)\n/* harmony export */ });\n/* harmony import */ var _until_element_creator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../until/element-creator */ \"./src/app/until/element-creator.ts\");\n\nconst dialogParameters = {\n    tag: 'dialog',\n    classNames: ['dialog'],\n};\nconst containerParameters = {\n    tag: 'div',\n    classNames: ['modal-container'],\n};\nconst titleParameters = {\n    tag: 'h3',\n    classNames: ['modal-title'],\n    textContent: 'Please add at least 2 valid options',\n};\nconst textParameters = {\n    tag: 'p',\n    classNames: ['modal-text'],\n    textContent: 'An option is considered valid if its title is not empty and its weight is greater than 0',\n};\nclass ValidOptionsModal extends _until_element_creator__WEBPACK_IMPORTED_MODULE_0__.ElementCreator {\n    constructor() {\n        super(dialogParameters);\n        this.container = new _until_element_creator__WEBPACK_IMPORTED_MODULE_0__.ElementCreator(containerParameters);\n        this.title = new _until_element_creator__WEBPACK_IMPORTED_MODULE_0__.ElementCreator(titleParameters);\n        this.text = new _until_element_creator__WEBPACK_IMPORTED_MODULE_0__.ElementCreator(textParameters);\n        const closeButtonParameters = {\n            tag: 'button',\n            classNames: ['button', 'close-button'],\n            textContent: 'Close',\n            callback: this.close.bind(this),\n        };\n        this.closeButton = new _until_element_creator__WEBPACK_IMPORTED_MODULE_0__.ElementCreator(closeButtonParameters);\n        this.addInnerElement(this.container);\n        this.container.addInnerElement(this.title);\n        this.container.addInnerElement(this.text);\n        this.container.addInnerElement(this.closeButton);\n        this.setupEventListeners();\n    }\n    show() {\n        const element = this.getElement();\n        if (element instanceof HTMLDialogElement) {\n            element.showModal();\n        }\n    }\n    close() {\n        const element = this.getElement();\n        if (element instanceof HTMLDialogElement) {\n            element.close();\n        }\n        this.element.remove();\n    }\n    setupEventListeners() {\n        const element = this.getElement();\n        if (element instanceof HTMLDialogElement) {\n            element.addEventListener('click', (event) => {\n                if (event.target === element) {\n                    this.close();\n                }\n            });\n            element.addEventListener('keydown', (event) => {\n                if (event.key === 'Escape') {\n                    this.close();\n                }\n            });\n        }\n    }\n}\n\n\n//# sourceURL=webpack:///./src/app/components/valid-options-modal.ts?");
 
 /***/ }),
 
@@ -225,20 +35,7 @@ class ValidOptionsModal extends _until_element_creator__WEBPACK_IMPORTED_MODULE_
   \*******************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   getOptionsData: () => (/* binding */ getOptionsData)
-/* harmony export */ });
-/* harmony import */ var _services_local_storage_service__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../services/local-storage-service */ "./src/services/local-storage-service.ts");
-
-function getOptionsData() {
-    const options = (0,_services_local_storage_service__WEBPACK_IMPORTED_MODULE_0__.loadOptions)();
-    const filteredOptions = options.filter((option) => {
-        return option.weight !== '' && option.title !== '';
-    });
-    return filteredOptions.length > 1 ? filteredOptions : undefined;
-}
-
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   getOptionsData: () => (/* binding */ getOptionsData)\n/* harmony export */ });\n/* harmony import */ var _services_local_storage_service__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../services/local-storage-service */ \"./src/services/local-storage-service.ts\");\n\nfunction getOptionsData() {\n    const options = (0,_services_local_storage_service__WEBPACK_IMPORTED_MODULE_0__.loadOptions)();\n    const filteredOptions = options.filter((option) => {\n        return option.weight !== '' && option.title !== '';\n    });\n    return filteredOptions.length > 1 ? filteredOptions : undefined;\n}\n\n\n//# sourceURL=webpack:///./src/app/until/get-options-data.ts?");
 
 /***/ }),
 
@@ -248,98 +45,7 @@ function getOptionsData() {
   \*****************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   OptionCreator: () => (/* binding */ OptionCreator)
-/* harmony export */ });
-/* harmony import */ var _element_creator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../element-creator */ "./src/app/until/element-creator.ts");
-/* harmony import */ var _services_local_storage_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../services/local-storage-service */ "./src/services/local-storage-service.ts");
-
-
-const labelParameters = {
-    tag: 'label',
-    classNames: ['label'],
-};
-const inputTitleParameters = {
-    tag: 'input',
-    classNames: ['title'],
-    attributes: {
-        type: 'text',
-        placeholder: 'title',
-    },
-};
-const inputWeightParameters = {
-    tag: 'input',
-    classNames: ['weight'],
-    attributes: {
-        type: 'number',
-        placeholder: 'weight',
-    },
-};
-class OptionCreator extends _element_creator__WEBPACK_IMPORTED_MODULE_0__.ElementCreator {
-    constructor(parameters, onUpdate) {
-        super(parameters);
-        this.onUpdate = onUpdate;
-        this.inputTitleElement = new _element_creator__WEBPACK_IMPORTED_MODULE_0__.ElementCreator(Object.assign(Object.assign({}, inputTitleParameters), { callback: this.onUpdate }));
-        this.inputWeightElement = new _element_creator__WEBPACK_IMPORTED_MODULE_0__.ElementCreator(Object.assign(Object.assign({}, inputWeightParameters), { callback: this.onUpdate }));
-        this.labelElement = new _element_creator__WEBPACK_IMPORTED_MODULE_0__.ElementCreator(labelParameters);
-        const buttonParameters = {
-            tag: 'button',
-            classNames: ['button'],
-            textContent: 'Delete',
-            callback: this.removeElement.bind(this),
-        };
-        this.button = new _element_creator__WEBPACK_IMPORTED_MODULE_0__.ElementCreator(buttonParameters);
-        this.createElement(parameters);
-    }
-    setValueTitle(value) {
-        const element = this.inputTitleElement.getElement();
-        if (element instanceof HTMLInputElement) {
-            element.value = value;
-        }
-    }
-    setValueWeight(value) {
-        const element = this.inputWeightElement.getElement();
-        if (element instanceof HTMLInputElement) {
-            element.value = value.toString();
-        }
-    }
-    setValueId(value) {
-        const element = this.labelElement.getElement();
-        if (element instanceof HTMLElement) {
-            element.textContent = value;
-        }
-        this.element.id = value;
-    }
-    getValues() {
-        const titleElement = this.inputTitleElement.getElement();
-        const weightElement = this.inputWeightElement.getElement();
-        const labelElement = this.labelElement.getElement();
-        return {
-            title: titleElement instanceof HTMLInputElement ? titleElement.value : '',
-            weight: weightElement instanceof HTMLInputElement
-                ? weightElement.value || ''
-                : '',
-            id: labelElement.textContent || '',
-        };
-    }
-    removeElement() {
-        this.element.remove();
-        (0,_services_local_storage_service__WEBPACK_IMPORTED_MODULE_1__.deleteOption)(this.element.id);
-        if (this.onRemove) {
-            this.onRemove(this);
-        }
-        this.onUpdate();
-    }
-    createElement(parameters) {
-        super.createElement(parameters);
-        this.addInnerElement(this.labelElement);
-        this.addInnerElement(this.inputTitleElement);
-        this.addInnerElement(this.inputWeightElement);
-        this.addInnerElement(this.button);
-    }
-}
-
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   OptionCreator: () => (/* binding */ OptionCreator)\n/* harmony export */ });\n/* harmony import */ var _element_creator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../element-creator */ \"./src/app/until/element-creator.ts\");\n/* harmony import */ var _services_local_storage_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../services/local-storage-service */ \"./src/services/local-storage-service.ts\");\n\n\nconst labelParameters = {\n    tag: 'label',\n    classNames: ['label'],\n};\nconst inputTitleParameters = {\n    tag: 'input',\n    classNames: ['title'],\n    attributes: {\n        type: 'text',\n        placeholder: 'title',\n    },\n};\nconst inputWeightParameters = {\n    tag: 'input',\n    classNames: ['weight'],\n    attributes: {\n        type: 'number',\n        placeholder: 'weight',\n    },\n};\nclass OptionCreator extends _element_creator__WEBPACK_IMPORTED_MODULE_0__.ElementCreator {\n    constructor(parameters, onUpdate) {\n        super(parameters);\n        this.onUpdate = onUpdate;\n        this.inputTitleElement = new _element_creator__WEBPACK_IMPORTED_MODULE_0__.ElementCreator(Object.assign(Object.assign({}, inputTitleParameters), { callback: this.onUpdate }));\n        this.inputWeightElement = new _element_creator__WEBPACK_IMPORTED_MODULE_0__.ElementCreator(Object.assign(Object.assign({}, inputWeightParameters), { callback: this.onUpdate }));\n        this.labelElement = new _element_creator__WEBPACK_IMPORTED_MODULE_0__.ElementCreator(labelParameters);\n        const buttonParameters = {\n            tag: 'button',\n            classNames: ['button'],\n            textContent: 'Delete',\n            callback: this.removeElement.bind(this),\n        };\n        this.button = new _element_creator__WEBPACK_IMPORTED_MODULE_0__.ElementCreator(buttonParameters);\n        this.createElement(parameters);\n    }\n    setValueTitle(value) {\n        const element = this.inputTitleElement.getElement();\n        if (element instanceof HTMLInputElement) {\n            element.value = value;\n        }\n    }\n    setValueWeight(value) {\n        const element = this.inputWeightElement.getElement();\n        if (element instanceof HTMLInputElement) {\n            element.value = value.toString();\n        }\n    }\n    setValueId(value) {\n        const element = this.labelElement.getElement();\n        if (element instanceof HTMLElement) {\n            element.textContent = value;\n        }\n        this.element.id = value;\n    }\n    getValues() {\n        const titleElement = this.inputTitleElement.getElement();\n        const weightElement = this.inputWeightElement.getElement();\n        const labelElement = this.labelElement.getElement();\n        return {\n            title: titleElement instanceof HTMLInputElement ? titleElement.value : '',\n            weight: weightElement instanceof HTMLInputElement\n                ? weightElement.value || ''\n                : '',\n            id: labelElement.textContent || '',\n        };\n    }\n    removeElement() {\n        this.element.remove();\n        (0,_services_local_storage_service__WEBPACK_IMPORTED_MODULE_1__.deleteOption)(this.element.id);\n        if (this.onRemove) {\n            this.onRemove(this);\n        }\n        this.onUpdate();\n    }\n    createElement(parameters) {\n        super.createElement(parameters);\n        this.addInnerElement(this.labelElement);\n        this.addInnerElement(this.inputTitleElement);\n        this.addInnerElement(this.inputWeightElement);\n        this.addInnerElement(this.button);\n    }\n}\n\n\n//# sourceURL=webpack:///./src/app/until/input-field/option-creator.ts?");
 
 /***/ }),
 
@@ -349,32 +55,7 @@ class OptionCreator extends _element_creator__WEBPACK_IMPORTED_MODULE_0__.Elemen
   \*****************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   parseFromCSV: () => (/* binding */ parseFromCSV)
-/* harmony export */ });
-function parseFromCSV(csv) {
-    if (!csv)
-        return [];
-    const result = [];
-    for (const line of csv.split('\n')) {
-        const fields = line.split(/[\t,]\s*/);
-        if (fields.length === 0)
-            continue;
-        let weight;
-        let title = fields.slice(0, -1).join(' ').trim();
-        const lastField = fields.at(-1);
-        if (Number.isNaN(Number(lastField))) {
-            title = fields.join(' ').trim();
-        }
-        else {
-            weight = lastField;
-        }
-        result.push({ title, weight });
-    }
-    return result;
-}
-
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   parseFromCSV: () => (/* binding */ parseFromCSV)\n/* harmony export */ });\nfunction parseFromCSV(csv) {\n    if (!csv)\n        return [];\n    const result = [];\n    for (const line of csv.split('\\n')) {\n        const fields = line.split(/[\\t,]\\s*/);\n        if (fields.length === 0)\n            continue;\n        let weight;\n        let title = fields.slice(0, -1).join(' ').trim();\n        const lastField = fields.at(-1);\n        if (Number.isNaN(Number(lastField))) {\n            title = fields.join(' ').trim();\n        }\n        else {\n            weight = lastField;\n        }\n        result.push({ title, weight });\n    }\n    return result;\n}\n\n\n//# sourceURL=webpack:///./src/app/until/parse-from-csv.ts?");
 
 /***/ }),
 
@@ -384,256 +65,7 @@ function parseFromCSV(csv) {
   \***********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ IndexView)
-/* harmony export */ });
-/* harmony import */ var _view__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../view */ "./src/app/view/view.ts");
-/* harmony import */ var _until_element_creator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../until/element-creator */ "./src/app/until/element-creator.ts");
-/* harmony import */ var _router_pages__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../router/pages */ "./src/app/router/pages.ts");
-/* harmony import */ var _until_input_field_option_creator__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../until/input-field/option-creator */ "./src/app/until/input-field/option-creator.ts");
-/* harmony import */ var _services_local_storage_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../services/local-storage-service */ "./src/services/local-storage-service.ts");
-/* harmony import */ var _components_paste_list_modal__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../components/paste-list-modal */ "./src/app/components/paste-list-modal.ts");
-/* harmony import */ var _until_get_options_data__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../until/get-options-data */ "./src/app/until/get-options-data.ts");
-/* harmony import */ var _components_valid_options_modal__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../components/valid-options-modal */ "./src/app/components/valid-options-modal.ts");
-var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-
-
-
-
-
-
-
-
-const DEFAULT_INDEX_CLASS = {
-    OPTIONS: 'options',
-    BUTTON: 'button',
-    ADD_OPTION_BUTTON: 'add-option-button',
-    PASTE_LIST_BUTTON: 'paste-list-button',
-    CLEAR_LIST_BUTTON: 'clear-list-button',
-    SAVE_LIST_BUTTON: 'save-list-button',
-    LOAD_LIST_BUTTON: 'load-list-button',
-    START_BUTTON: 'start-button',
-};
-const defaultErrorParameters = {
-    tag: 'section',
-    classNames: [DEFAULT_INDEX_CLASS.OPTIONS],
-};
-const listParames = {
-    tag: 'ul',
-    classNames: ['option-list'],
-};
-class IndexView extends _view__WEBPACK_IMPORTED_MODULE_0__["default"] {
-    constructor(router, sound, parameters = defaultErrorParameters) {
-        super(parameters);
-        this.optionParames = {
-            tag: 'li',
-            classNames: ['option'],
-        };
-        this.optionIdCounter = 1;
-        this.optionInstances = [];
-        this.sounds = sound;
-        this.creatorList = new _until_element_creator__WEBPACK_IMPORTED_MODULE_1__.ElementCreator(listParames);
-        this.dialog = new _components_paste_list_modal__WEBPACK_IMPORTED_MODULE_5__.PasteListModal((parsedData) => this.pasteList(parsedData));
-        this.configureView(router);
-    }
-    configureView(router) {
-        const buttons = [
-            {
-                class: DEFAULT_INDEX_CLASS.ADD_OPTION_BUTTON,
-                text: 'Add Option',
-                action: () => this.createAndAddOption(),
-            },
-            {
-                class: DEFAULT_INDEX_CLASS.PASTE_LIST_BUTTON,
-                text: 'Paste list',
-                action: () => {
-                    //this.dialog = new PasteListModal((parsedData) => this.pasteList(parsedData));
-                    document.body.append(this.dialog.getElement());
-                    this.dialog.show();
-                },
-            },
-            {
-                class: DEFAULT_INDEX_CLASS.CLEAR_LIST_BUTTON,
-                text: 'Clear list',
-                action: () => this.clearOptions(),
-            },
-            {
-                class: DEFAULT_INDEX_CLASS.SAVE_LIST_BUTTON,
-                text: 'Save list to file',
-                action: () => this.saveListToFile(),
-            },
-            {
-                class: DEFAULT_INDEX_CLASS.LOAD_LIST_BUTTON,
-                text: 'Load list from file',
-                action: () => this.loadListFromFile(),
-            },
-            {
-                class: DEFAULT_INDEX_CLASS.START_BUTTON,
-                text: 'Start',
-                action: () => {
-                    if (!(0,_until_get_options_data__WEBPACK_IMPORTED_MODULE_6__.getOptionsData)()) {
-                        const dialog = new _components_valid_options_modal__WEBPACK_IMPORTED_MODULE_7__.ValidOptionsModal();
-                        document.body.append(dialog.getElement());
-                        dialog.show();
-                    }
-                    router.navigate(_router_pages__WEBPACK_IMPORTED_MODULE_2__.Pages.DECISION_PICKER);
-                },
-            },
-        ];
-        this.loadOptions();
-        this.viewElementCreator.addInnerElement(this.creatorList);
-        for (const { class: className, text, action } of buttons) {
-            const buttonParameters = {
-                tag: 'button',
-                classNames: [DEFAULT_INDEX_CLASS.BUTTON, className],
-                textContent: text,
-                callback: action,
-            };
-            this.viewElementCreator.addInnerElement(new _until_element_creator__WEBPACK_IMPORTED_MODULE_1__.ElementCreator(buttonParameters));
-        }
-    }
-    createAndAddOption() {
-        const newOption = new _until_input_field_option_creator__WEBPACK_IMPORTED_MODULE_3__.OptionCreator(this.optionParames, () => {
-            if (this.optionInstances.length === 0) {
-                this.optionIdCounter = 1;
-            }
-            this.saveOptions();
-        });
-        const optionId = `#${this.optionIdCounter}`;
-        newOption.setValueId(`${optionId}`);
-        this.optionIdCounter++;
-        newOption.onRemove = (option) => {
-            this.removeOptionInstance(option);
-        };
-        this.optionInstances.push(newOption);
-        this.creatorList.addInnerElement(newOption);
-        this.saveOptions();
-    }
-    getOptionsData() {
-        return this.optionInstances.map((option) => option.getValues());
-    }
-    saveOptions() {
-        const options = this.getOptionsData();
-        (0,_services_local_storage_service__WEBPACK_IMPORTED_MODULE_4__.saveOptions)(options);
-        localStorage.setItem('optionIdCounter', String(this.optionIdCounter));
-    }
-    removeOptionInstance(option) {
-        this.optionInstances = this.optionInstances.filter((opt) => opt !== option);
-        this.saveOptions();
-    }
-    loadOptions() {
-        const savedOptions = (0,_services_local_storage_service__WEBPACK_IMPORTED_MODULE_4__.loadOptions)();
-        const savedCounter = localStorage.getItem('optionIdCounter');
-        if (savedCounter) {
-            this.optionIdCounter = Number.parseInt(savedCounter, 10);
-        }
-        if (savedCounter) {
-            for (const option of savedOptions) {
-                const newOption = new _until_input_field_option_creator__WEBPACK_IMPORTED_MODULE_3__.OptionCreator(this.optionParames, () => this.saveOptions());
-                newOption.setValueId(option.id);
-                newOption.setValueTitle(option.title);
-                newOption.setValueWeight(option.weight);
-                newOption.onRemove = (option) => this.removeOptionInstance(option);
-                this.optionInstances.push(newOption);
-                this.creatorList.addInnerElement(newOption);
-            }
-        }
-        else {
-            this.createAndAddOption();
-        }
-    }
-    clearOptions() {
-        (0,_services_local_storage_service__WEBPACK_IMPORTED_MODULE_4__.clearOptions)();
-        const listElement = this.creatorList.getElement();
-        while (listElement.firstChild) {
-            listElement.firstChild.remove();
-        }
-        this.optionIdCounter = 1;
-        this.optionInstances = [];
-        this.saveOptions();
-    }
-    saveListToFile() {
-        const options = (0,_services_local_storage_service__WEBPACK_IMPORTED_MODULE_4__.loadOptions)();
-        const lastId = this.optionIdCounter - 1;
-        const dataToSave = {
-            list: options,
-            lastId: lastId,
-        };
-        const optionsJson = JSON.stringify(dataToSave, undefined, 2);
-        const blob = new Blob([optionsJson], { type: 'application/json' });
-        const url = URL.createObjectURL(blob);
-        const link = document.createElement('a');
-        link.href = url;
-        link.download = 'option-list.json';
-        link.click();
-        URL.revokeObjectURL(url);
-    }
-    loadListFromFile() {
-        const input = document.createElement('input');
-        input.type = 'file';
-        input.accept = 'application/json';
-        input.addEventListener('change', (event) => __awaiter(this, void 0, void 0, function* () {
-            var _a;
-            const target = event.target;
-            if (target instanceof HTMLInputElement) {
-                const file = (_a = target.files) === null || _a === void 0 ? void 0 : _a[0];
-                if (!file)
-                    return;
-                const result = yield file.text();
-                const data = JSON.parse(result);
-                if (!data.list ||
-                    !Array.isArray(data.list) ||
-                    typeof data.lastId !== 'number') {
-                    console.warn('Invalid file format, creating a new option.');
-                    this.createAndAddOption();
-                    return;
-                }
-                this.clearOptions();
-                this.optionIdCounter = data.lastId + 1;
-                for (const optionData of data.list) {
-                    const newOption = new _until_input_field_option_creator__WEBPACK_IMPORTED_MODULE_3__.OptionCreator(this.optionParames, () => this.saveOptions());
-                    newOption.setValueId(optionData.id);
-                    newOption.setValueTitle(optionData.title);
-                    newOption.setValueWeight(optionData.weight);
-                    newOption.onRemove = (option) => this.removeOptionInstance(option);
-                    this.optionInstances.push(newOption);
-                    this.creatorList.addInnerElement(newOption);
-                }
-                this.saveOptions();
-            }
-            else {
-                console.error('Unexpected target type:', target);
-            }
-        }));
-        input.click();
-    }
-    pasteList(parsedData) {
-        console.log('Received parsed data:', parsedData);
-        for (const optionData of parsedData) {
-            const newOption = new _until_input_field_option_creator__WEBPACK_IMPORTED_MODULE_3__.OptionCreator(this.optionParames, () => this.saveOptions());
-            const id = `#${this.optionIdCounter}`;
-            newOption.setValueId(id);
-            newOption.setValueTitle(optionData.title);
-            const weight = optionData.weight || '';
-            newOption.setValueWeight(weight);
-            newOption.onRemove = (option) => this.removeOptionInstance(option);
-            this.optionInstances.push(newOption);
-            this.creatorList.addInnerElement(newOption);
-            this.optionIdCounter++;
-        }
-        this.saveOptions();
-    }
-}
-
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ IndexView)\n/* harmony export */ });\n/* harmony import */ var _view__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../view */ \"./src/app/view/view.ts\");\n/* harmony import */ var _until_element_creator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../until/element-creator */ \"./src/app/until/element-creator.ts\");\n/* harmony import */ var _router_pages__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../router/pages */ \"./src/app/router/pages.ts\");\n/* harmony import */ var _until_input_field_option_creator__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../until/input-field/option-creator */ \"./src/app/until/input-field/option-creator.ts\");\n/* harmony import */ var _services_local_storage_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../services/local-storage-service */ \"./src/services/local-storage-service.ts\");\n/* harmony import */ var _components_paste_list_modal__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../components/paste-list-modal */ \"./src/app/components/paste-list-modal.ts\");\n/* harmony import */ var _until_get_options_data__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../until/get-options-data */ \"./src/app/until/get-options-data.ts\");\n/* harmony import */ var _components_valid_options_modal__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../components/valid-options-modal */ \"./src/app/components/valid-options-modal.ts\");\nvar __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {\n    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }\n    return new (P || (P = Promise))(function (resolve, reject) {\n        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }\n        function rejected(value) { try { step(generator[\"throw\"](value)); } catch (e) { reject(e); } }\n        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }\n        step((generator = generator.apply(thisArg, _arguments || [])).next());\n    });\n};\n\n\n\n\n\n\n\n\nconst DEFAULT_INDEX_CLASS = {\n    OPTIONS: 'options',\n    BUTTON: 'button',\n    ADD_OPTION_BUTTON: 'add-option-button',\n    PASTE_LIST_BUTTON: 'paste-list-button',\n    CLEAR_LIST_BUTTON: 'clear-list-button',\n    SAVE_LIST_BUTTON: 'save-list-button',\n    LOAD_LIST_BUTTON: 'load-list-button',\n    START_BUTTON: 'start-button',\n};\nconst defaultErrorParameters = {\n    tag: 'section',\n    classNames: [DEFAULT_INDEX_CLASS.OPTIONS],\n};\nconst listParames = {\n    tag: 'ul',\n    classNames: ['option-list'],\n};\nclass IndexView extends _view__WEBPACK_IMPORTED_MODULE_0__[\"default\"] {\n    constructor(router, sound, parameters = defaultErrorParameters) {\n        super(parameters);\n        this.optionParames = {\n            tag: 'li',\n            classNames: ['option'],\n        };\n        this.optionIdCounter = 1;\n        this.optionInstances = [];\n        this.sounds = sound;\n        this.creatorList = new _until_element_creator__WEBPACK_IMPORTED_MODULE_1__.ElementCreator(listParames);\n        this.dialog = new _components_paste_list_modal__WEBPACK_IMPORTED_MODULE_5__.PasteListModal((parsedData) => this.pasteList(parsedData));\n        this.configureView(router);\n    }\n    configureView(router) {\n        const buttons = [\n            {\n                class: DEFAULT_INDEX_CLASS.ADD_OPTION_BUTTON,\n                text: 'Add Option',\n                action: () => this.createAndAddOption(),\n            },\n            {\n                class: DEFAULT_INDEX_CLASS.PASTE_LIST_BUTTON,\n                text: 'Paste list',\n                action: () => {\n                    //this.dialog = new PasteListModal((parsedData) => this.pasteList(parsedData));\n                    document.body.append(this.dialog.getElement());\n                    this.dialog.show();\n                },\n            },\n            {\n                class: DEFAULT_INDEX_CLASS.CLEAR_LIST_BUTTON,\n                text: 'Clear list',\n                action: () => this.clearOptions(),\n            },\n            {\n                class: DEFAULT_INDEX_CLASS.SAVE_LIST_BUTTON,\n                text: 'Save list to file',\n                action: () => this.saveListToFile(),\n            },\n            {\n                class: DEFAULT_INDEX_CLASS.LOAD_LIST_BUTTON,\n                text: 'Load list from file',\n                action: () => this.loadListFromFile(),\n            },\n            {\n                class: DEFAULT_INDEX_CLASS.START_BUTTON,\n                text: 'Start',\n                action: () => {\n                    if (!(0,_until_get_options_data__WEBPACK_IMPORTED_MODULE_6__.getOptionsData)()) {\n                        const dialog = new _components_valid_options_modal__WEBPACK_IMPORTED_MODULE_7__.ValidOptionsModal();\n                        document.body.append(dialog.getElement());\n                        dialog.show();\n                    }\n                    router.navigate(_router_pages__WEBPACK_IMPORTED_MODULE_2__.Pages.DECISION_PICKER);\n                },\n            },\n        ];\n        this.loadOptions();\n        this.viewElementCreator.addInnerElement(this.creatorList);\n        for (const { class: className, text, action } of buttons) {\n            const buttonParameters = {\n                tag: 'button',\n                classNames: [DEFAULT_INDEX_CLASS.BUTTON, className],\n                textContent: text,\n                callback: action,\n            };\n            this.viewElementCreator.addInnerElement(new _until_element_creator__WEBPACK_IMPORTED_MODULE_1__.ElementCreator(buttonParameters));\n        }\n    }\n    createAndAddOption() {\n        const newOption = new _until_input_field_option_creator__WEBPACK_IMPORTED_MODULE_3__.OptionCreator(this.optionParames, () => {\n            if (this.optionInstances.length === 0) {\n                this.optionIdCounter = 1;\n            }\n            this.saveOptions();\n        });\n        const optionId = `#${this.optionIdCounter}`;\n        newOption.setValueId(`${optionId}`);\n        this.optionIdCounter++;\n        newOption.onRemove = (option) => {\n            this.removeOptionInstance(option);\n        };\n        this.optionInstances.push(newOption);\n        this.creatorList.addInnerElement(newOption);\n        this.saveOptions();\n    }\n    getOptionsData() {\n        return this.optionInstances.map((option) => option.getValues());\n    }\n    saveOptions() {\n        const options = this.getOptionsData();\n        (0,_services_local_storage_service__WEBPACK_IMPORTED_MODULE_4__.saveOptions)(options);\n        localStorage.setItem('optionIdCounter', String(this.optionIdCounter));\n    }\n    removeOptionInstance(option) {\n        this.optionInstances = this.optionInstances.filter((opt) => opt !== option);\n        this.saveOptions();\n    }\n    loadOptions() {\n        const savedOptions = (0,_services_local_storage_service__WEBPACK_IMPORTED_MODULE_4__.loadOptions)();\n        const savedCounter = localStorage.getItem('optionIdCounter');\n        if (savedCounter) {\n            this.optionIdCounter = Number.parseInt(savedCounter, 10);\n        }\n        if (savedCounter) {\n            for (const option of savedOptions) {\n                const newOption = new _until_input_field_option_creator__WEBPACK_IMPORTED_MODULE_3__.OptionCreator(this.optionParames, () => this.saveOptions());\n                newOption.setValueId(option.id);\n                newOption.setValueTitle(option.title);\n                newOption.setValueWeight(option.weight);\n                newOption.onRemove = (option) => this.removeOptionInstance(option);\n                this.optionInstances.push(newOption);\n                this.creatorList.addInnerElement(newOption);\n            }\n        }\n        else {\n            this.createAndAddOption();\n        }\n    }\n    clearOptions() {\n        (0,_services_local_storage_service__WEBPACK_IMPORTED_MODULE_4__.clearOptions)();\n        const listElement = this.creatorList.getElement();\n        while (listElement.firstChild) {\n            listElement.firstChild.remove();\n        }\n        this.optionIdCounter = 1;\n        this.optionInstances = [];\n        this.saveOptions();\n    }\n    saveListToFile() {\n        const options = (0,_services_local_storage_service__WEBPACK_IMPORTED_MODULE_4__.loadOptions)();\n        const lastId = this.optionIdCounter - 1;\n        const dataToSave = {\n            list: options,\n            lastId: lastId,\n        };\n        const optionsJson = JSON.stringify(dataToSave, undefined, 2);\n        const blob = new Blob([optionsJson], { type: 'application/json' });\n        const url = URL.createObjectURL(blob);\n        const link = document.createElement('a');\n        link.href = url;\n        link.download = 'option-list.json';\n        link.click();\n        URL.revokeObjectURL(url);\n    }\n    loadListFromFile() {\n        const input = document.createElement('input');\n        input.type = 'file';\n        input.accept = 'application/json';\n        input.addEventListener('change', (event) => __awaiter(this, void 0, void 0, function* () {\n            var _a;\n            const target = event.target;\n            if (target instanceof HTMLInputElement) {\n                const file = (_a = target.files) === null || _a === void 0 ? void 0 : _a[0];\n                if (!file)\n                    return;\n                const result = yield file.text();\n                const data = JSON.parse(result);\n                if (!data.list ||\n                    !Array.isArray(data.list) ||\n                    typeof data.lastId !== 'number') {\n                    console.warn('Invalid file format, creating a new option.');\n                    this.createAndAddOption();\n                    return;\n                }\n                this.clearOptions();\n                this.optionIdCounter = data.lastId + 1;\n                for (const optionData of data.list) {\n                    const newOption = new _until_input_field_option_creator__WEBPACK_IMPORTED_MODULE_3__.OptionCreator(this.optionParames, () => this.saveOptions());\n                    newOption.setValueId(optionData.id);\n                    newOption.setValueTitle(optionData.title);\n                    newOption.setValueWeight(optionData.weight);\n                    newOption.onRemove = (option) => this.removeOptionInstance(option);\n                    this.optionInstances.push(newOption);\n                    this.creatorList.addInnerElement(newOption);\n                }\n                this.saveOptions();\n            }\n            else {\n                console.error('Unexpected target type:', target);\n            }\n        }));\n        input.click();\n    }\n    pasteList(parsedData) {\n        console.log('Received parsed data:', parsedData);\n        for (const optionData of parsedData) {\n            const newOption = new _until_input_field_option_creator__WEBPACK_IMPORTED_MODULE_3__.OptionCreator(this.optionParames, () => this.saveOptions());\n            const id = `#${this.optionIdCounter}`;\n            newOption.setValueId(id);\n            newOption.setValueTitle(optionData.title);\n            const weight = optionData.weight || '';\n            newOption.setValueWeight(weight);\n            newOption.onRemove = (option) => this.removeOptionInstance(option);\n            this.optionInstances.push(newOption);\n            this.creatorList.addInnerElement(newOption);\n            this.optionIdCounter++;\n        }\n        this.saveOptions();\n    }\n}\n\n\n//# sourceURL=webpack:///./src/app/view/main/index/index-view.ts?");
 
 /***/ }),
 
@@ -643,44 +75,8 @@ class IndexView extends _view__WEBPACK_IMPORTED_MODULE_0__["default"] {
   \***********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   clearOptions: () => (/* binding */ clearOptions),
-/* harmony export */   deleteOption: () => (/* binding */ deleteOption),
-/* harmony export */   loadOptions: () => (/* binding */ loadOptions),
-/* harmony export */   saveOptions: () => (/* binding */ saveOptions)
-/* harmony export */ });
-function saveOptions(options) {
-    localStorage.setItem('options-makholodova', JSON.stringify(options));
-}
-function loadOptions() {
-    const savedOptions = localStorage.getItem('options-makholodova');
-    if (savedOptions) {
-        try {
-            const parsedOptions = JSON.parse(savedOptions);
-            if (Array.isArray(parsedOptions) &&
-                parsedOptions.every((option) => 'id' in option && 'title' in option && 'weight' in option)) {
-                return parsedOptions;
-            }
-        }
-        catch (error) {
-            console.error('Failed to parse saved options:', error);
-        }
-    }
-    return [];
-}
-function clearOptions() {
-    localStorage.removeItem('options-makholodova');
-    localStorage.removeItem('optionIdCounter');
-}
-function deleteOption(id) {
-    const options = loadOptions();
-    const updatedOptions = options.filter((option) => option.id !== id);
-    saveOptions(updatedOptions);
-}
-
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   clearOptions: () => (/* binding */ clearOptions),\n/* harmony export */   deleteOption: () => (/* binding */ deleteOption),\n/* harmony export */   loadOptions: () => (/* binding */ loadOptions),\n/* harmony export */   saveOptions: () => (/* binding */ saveOptions)\n/* harmony export */ });\nfunction saveOptions(options) {\n    localStorage.setItem('options-makholodova', JSON.stringify(options));\n}\nfunction loadOptions() {\n    const savedOptions = localStorage.getItem('options-makholodova');\n    if (savedOptions) {\n        try {\n            const parsedOptions = JSON.parse(savedOptions);\n            if (Array.isArray(parsedOptions) &&\n                parsedOptions.every((option) => 'id' in option && 'title' in option && 'weight' in option)) {\n                return parsedOptions;\n            }\n        }\n        catch (error) {\n            console.error('Failed to parse saved options:', error);\n        }\n    }\n    return [];\n}\nfunction clearOptions() {\n    localStorage.removeItem('options-makholodova');\n    localStorage.removeItem('optionIdCounter');\n}\nfunction deleteOption(id) {\n    const options = loadOptions();\n    const updatedOptions = options.filter((option) => option.id !== id);\n    saveOptions(updatedOptions);\n}\n\n\n//# sourceURL=webpack:///./src/services/local-storage-service.ts?");
 
 /***/ })
 
 }]);
-//# sourceMappingURL=src_app_view_main_index_index-view_ts.index.js.map

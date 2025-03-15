@@ -1,3 +1,11 @@
+/*
+ * ATTENTION: The "eval" devtool has been used (maybe by default in mode: "development").
+ * This devtool is neither made for production nor for readable output files.
+ * It uses "eval()" calls to create a separate source file in the browser devtools.
+ * If you are trying to read the output file, select a different devtool (https://webpack.js.org/configuration/devtool/)
+ * or disable the default devtool with "devtool: false".
+ * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
+ */
 /******/ (() => { // webpackBootstrap
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
@@ -8,79 +16,7 @@
   \************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ App)
-/* harmony export */ });
-/* harmony import */ var _view_header_header_view__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./view/header/header-view */ "./src/app/view/header/header-view.ts");
-/* harmony import */ var _view_main_main_view__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./view/main/main-view */ "./src/app/view/main/main-view.ts");
-/* harmony import */ var _router_pages__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./router/pages */ "./src/app/router/pages.ts");
-/* harmony import */ var _router_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./router/router */ "./src/app/router/router.ts");
-/* harmony import */ var _components_sound__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/sound */ "./src/app/components/sound.ts");
-var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-
-
-
-
-
-class App {
-    constructor() {
-        const routes = this.createRoutes();
-        this.router = new _router_router__WEBPACK_IMPORTED_MODULE_3__["default"](routes);
-        this.sounds = new _components_sound__WEBPACK_IMPORTED_MODULE_4__.Sounds();
-        this.headerView = new _view_header_header_view__WEBPACK_IMPORTED_MODULE_0__["default"]();
-        this.main = new _view_main_main_view__WEBPACK_IMPORTED_MODULE_1__["default"]();
-        this.createView();
-    }
-    createView() {
-        document.body.append(this.headerView.getHtmlElement(), this.main.getHtmlElement());
-        //getOptionsData();
-    }
-    createRoutes() {
-        return [
-            {
-                path: ``,
-                callback: () => __awaiter(this, void 0, void 0, function* () {
-                    const { default: IndexView } = yield __webpack_require__.e(/*! import() */ "src_app_view_main_index_index-view_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./view/main/index/index-view */ "./src/app/view/main/index/index-view.ts"));
-                    this.setContent(new IndexView(this.router, this.sounds));
-                }),
-            },
-            {
-                path: `${_router_pages__WEBPACK_IMPORTED_MODULE_2__.Pages.INDEX}`,
-                callback: () => __awaiter(this, void 0, void 0, function* () {
-                    const { default: IndexView } = yield __webpack_require__.e(/*! import() */ "src_app_view_main_index_index-view_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./view/main/index/index-view */ "./src/app/view/main/index/index-view.ts"));
-                    this.setContent(new IndexView(this.router, this.sounds));
-                }),
-            },
-            {
-                path: `${_router_pages__WEBPACK_IMPORTED_MODULE_2__.Pages.DECISION_PICKER}`,
-                callback: () => __awaiter(this, void 0, void 0, function* () {
-                    const { default: DecisionPickerView } = yield __webpack_require__.e(/*! import() */ "src_app_view_main_decision-picker_decision-picker-view_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./view/main/decision-picker/decision-picker-view */ "./src/app/view/main/decision-picker/decision-picker-view.ts"));
-                    this.setContent(new DecisionPickerView(this.router, this.sounds));
-                }),
-            },
-            {
-                path: `${_router_pages__WEBPACK_IMPORTED_MODULE_2__.Pages.NOT_FOUND}`,
-                callback: () => __awaiter(this, void 0, void 0, function* () {
-                    const { default: NotFoundView } = yield __webpack_require__.e(/*! import() */ "src_app_view_main_not-found_not-found-view_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./view/main/not-found/not-found-view */ "./src/app/view/main/not-found/not-found-view.ts"));
-                    this.setContent(new NotFoundView(this.router));
-                }),
-            },
-        ];
-    }
-    setContent(view) {
-        this.main.setContent(view);
-    }
-}
-
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ App)\n/* harmony export */ });\n/* harmony import */ var _view_header_header_view__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./view/header/header-view */ \"./src/app/view/header/header-view.ts\");\n/* harmony import */ var _view_main_main_view__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./view/main/main-view */ \"./src/app/view/main/main-view.ts\");\n/* harmony import */ var _router_pages__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./router/pages */ \"./src/app/router/pages.ts\");\n/* harmony import */ var _router_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./router/router */ \"./src/app/router/router.ts\");\n/* harmony import */ var _components_sound__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/sound */ \"./src/app/components/sound.ts\");\nvar __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {\n    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }\n    return new (P || (P = Promise))(function (resolve, reject) {\n        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }\n        function rejected(value) { try { step(generator[\"throw\"](value)); } catch (e) { reject(e); } }\n        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }\n        step((generator = generator.apply(thisArg, _arguments || [])).next());\n    });\n};\n\n\n\n\n\nclass App {\n    constructor() {\n        const routes = this.createRoutes();\n        this.router = new _router_router__WEBPACK_IMPORTED_MODULE_3__[\"default\"](routes);\n        this.sounds = new _components_sound__WEBPACK_IMPORTED_MODULE_4__.Sounds();\n        this.headerView = new _view_header_header_view__WEBPACK_IMPORTED_MODULE_0__[\"default\"]();\n        this.main = new _view_main_main_view__WEBPACK_IMPORTED_MODULE_1__[\"default\"]();\n        this.createView();\n    }\n    createView() {\n        document.body.append(this.headerView.getHtmlElement(), this.main.getHtmlElement());\n        //getOptionsData();\n    }\n    createRoutes() {\n        return [\n            {\n                path: ``,\n                callback: () => __awaiter(this, void 0, void 0, function* () {\n                    const { default: IndexView } = yield __webpack_require__.e(/*! import() */ \"src_app_view_main_index_index-view_ts\").then(__webpack_require__.bind(__webpack_require__, /*! ./view/main/index/index-view */ \"./src/app/view/main/index/index-view.ts\"));\n                    this.setContent(new IndexView(this.router, this.sounds));\n                }),\n            },\n            {\n                path: `${_router_pages__WEBPACK_IMPORTED_MODULE_2__.Pages.INDEX}`,\n                callback: () => __awaiter(this, void 0, void 0, function* () {\n                    const { default: IndexView } = yield __webpack_require__.e(/*! import() */ \"src_app_view_main_index_index-view_ts\").then(__webpack_require__.bind(__webpack_require__, /*! ./view/main/index/index-view */ \"./src/app/view/main/index/index-view.ts\"));\n                    this.setContent(new IndexView(this.router, this.sounds));\n                }),\n            },\n            {\n                path: `${_router_pages__WEBPACK_IMPORTED_MODULE_2__.Pages.DECISION_PICKER}`,\n                callback: () => __awaiter(this, void 0, void 0, function* () {\n                    const { default: DecisionPickerView } = yield __webpack_require__.e(/*! import() */ \"src_app_view_main_decision-picker_decision-picker-view_ts\").then(__webpack_require__.bind(__webpack_require__, /*! ./view/main/decision-picker/decision-picker-view */ \"./src/app/view/main/decision-picker/decision-picker-view.ts\"));\n                    this.setContent(new DecisionPickerView(this.router, this.sounds));\n                }),\n            },\n            {\n                path: `${_router_pages__WEBPACK_IMPORTED_MODULE_2__.Pages.NOT_FOUND}`,\n                callback: () => __awaiter(this, void 0, void 0, function* () {\n                    const { default: NotFoundView } = yield __webpack_require__.e(/*! import() */ \"src_app_view_main_not-found_not-found-view_ts\").then(__webpack_require__.bind(__webpack_require__, /*! ./view/main/not-found/not-found-view */ \"./src/app/view/main/not-found/not-found-view.ts\"));\n                    this.setContent(new NotFoundView(this.router));\n                }),\n            },\n        ];\n    }\n    setContent(view) {\n        this.main.setContent(view);\n    }\n}\n\n\n//# sourceURL=webpack:///./src/app/app.ts?");
 
 /***/ }),
 
@@ -90,28 +26,7 @@ class App {
   \*************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   Sounds: () => (/* binding */ Sounds)
-/* harmony export */ });
-class Sounds {
-    constructor() {
-        this.winSound = new Audio('./sounds/winSound.mp3');
-        const savedSoundState = localStorage.getItem('soundEnabled');
-        this.enabled = savedSoundState ? JSON.parse(savedSoundState) : false;
-    }
-    toggleAudio() {
-        this.enabled = !this.enabled;
-        localStorage.setItem('soundEnabled', JSON.stringify(this.enabled));
-        console.log(this.enabled);
-    }
-    playWinSound() {
-        if (this.enabled) {
-            this.winSound.play();
-        }
-    }
-}
-
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   Sounds: () => (/* binding */ Sounds)\n/* harmony export */ });\nclass Sounds {\n    constructor() {\n        this.winSound = new Audio('./sounds/winSound.mp3');\n        const savedSoundState = localStorage.getItem('soundEnabled');\n        this.enabled = savedSoundState ? JSON.parse(savedSoundState) : false;\n    }\n    toggleAudio() {\n        this.enabled = !this.enabled;\n        localStorage.setItem('soundEnabled', JSON.stringify(this.enabled));\n        console.log(this.enabled);\n    }\n    playWinSound() {\n        if (this.enabled) {\n            this.winSound.play();\n        }\n    }\n}\n\n\n//# sourceURL=webpack:///./src/app/components/sound.ts?");
 
 /***/ }),
 
@@ -121,27 +36,7 @@ class Sounds {
   \************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ HashRouterHandler)
-/* harmony export */ });
-/* harmony import */ var _history_router_handler__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../history-router-handler */ "./src/app/router/handler/history-router-handler.ts");
-
-class HashRouterHandler extends _history_router_handler__WEBPACK_IMPORTED_MODULE_0__["default"] {
-    constructor(callbackRouter) {
-        super(callbackRouter);
-        this.params = {
-            nameEvent: 'hashchange',
-            locationField: 'hash',
-        };
-        globalThis.addEventListener(this.params.nameEvent, this.handler);
-    }
-    static setHistory(url) {
-        const normalizedUrl = url.replace(/\/$/, '');
-        globalThis.location.href = `${globalThis.location.href.replace(/#(.*)$/, '')}#${normalizedUrl}`;
-    }
-}
-
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ HashRouterHandler)\n/* harmony export */ });\n/* harmony import */ var _history_router_handler__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../history-router-handler */ \"./src/app/router/handler/history-router-handler.ts\");\n\nclass HashRouterHandler extends _history_router_handler__WEBPACK_IMPORTED_MODULE_0__[\"default\"] {\n    constructor(callbackRouter) {\n        super(callbackRouter);\n        this.params = {\n            nameEvent: 'hashchange',\n            locationField: 'hash',\n        };\n        window.addEventListener(this.params.nameEvent, this.handler);\n    }\n    static setHistory(url) {\n        window.location.href = `${window.location.href.replace(/#(.*)$/, '')}#${url}`;\n    }\n}\n\n\n//# sourceURL=webpack:///./src/app/router/handler/hash/hash-router-handler.ts?");
 
 /***/ }),
 
@@ -151,40 +46,7 @@ class HashRouterHandler extends _history_router_handler__WEBPACK_IMPORTED_MODULE
   \**********************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ HistoryRouterHandler)
-/* harmony export */ });
-class HistoryRouterHandler {
-    constructor(callback) {
-        this.params = {
-            nameEvent: 'popstate',
-            locationField: 'pathname',
-        };
-        this.callback = callback;
-        this.handler = this.navigate.bind(this);
-        globalThis.addEventListener(this.params.nameEvent, this.handler);
-    }
-    static setHistory(url) {
-        globalThis.history.pushState(`undefined`, '', `/${url}`);
-    }
-    navigate(url) {
-        if (typeof url === 'string') {
-            url = url.replace(/\/$/, '');
-            HistoryRouterHandler.setHistory(url);
-        }
-        const urlString = globalThis.location.pathname.replace(/\/$/, '').slice(1);
-        console.log('urlString', urlString);
-        const result = {
-            path: urlString,
-        };
-        this.callback(result);
-    }
-    disable() {
-        globalThis.removeEventListener(this.params.nameEvent, this.handler);
-    }
-}
-
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ HistoryRouterHandler)\n/* harmony export */ });\nclass HistoryRouterHandler {\n    constructor(callback) {\n        this.params = {\n            nameEvent: 'popstate',\n            locationField: 'pathname',\n        };\n        this.callback = callback;\n        this.handler = this.navigate.bind(this);\n        window.addEventListener(this.params.nameEvent, this.handler);\n    }\n    static setHistory(url) {\n        window.history.pushState(null, '', `/${url}`);\n    }\n    navigate(url) {\n        if (typeof url === 'string') {\n            url = url.replace(/\\/$/, '');\n            HistoryRouterHandler.setHistory(url);\n        }\n        const urlString = globalThis.location.pathname.replace(/\\/$/, '').slice(1);\n        console.log('urlString', urlString);\n        const result = {\n            path: urlString,\n        };\n        this.callback(result);\n    }\n    disable() {\n        window.removeEventListener(this.params.nameEvent, this.handler);\n    }\n}\n\n\n//# sourceURL=webpack:///./src/app/router/handler/history-router-handler.ts?");
 
 /***/ }),
 
@@ -194,17 +56,7 @@ class HistoryRouterHandler {
   \*********************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   Pages: () => (/* binding */ Pages)
-/* harmony export */ });
-const Pages = {
-    INDEX: 'index',
-    DECISION_PICKER: 'decision-picker',
-    NOT_FOUND: 'not-found',
-};
-
-
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   Pages: () => (/* binding */ Pages)\n/* harmony export */ });\nconst Pages = {\n    INDEX: 'index',\n    DECISION_PICKER: 'decision-picker',\n    NOT_FOUND: 'not-found',\n};\n\n\n\n//# sourceURL=webpack:///./src/app/router/pages.ts?");
 
 /***/ }),
 
@@ -214,50 +66,7 @@ const Pages = {
   \**********************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ Router)
-/* harmony export */ });
-/* harmony import */ var _handler_hash_hash_router_handler__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./handler/hash/hash-router-handler */ "./src/app/router/handler/hash/hash-router-handler.ts");
-/* harmony import */ var _handler_history_router_handler__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./handler/history-router-handler */ "./src/app/router/handler/history-router-handler.ts");
-/* harmony import */ var _pages__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./pages */ "./src/app/router/pages.ts");
-
-
-
-class Router {
-    constructor(routes) {
-        this.routes = routes;
-        this.handler = new _handler_history_router_handler__WEBPACK_IMPORTED_MODULE_1__["default"](this.urlChangedHandler.bind(this));
-        document.addEventListener('DOMContentLoaded', () => {
-            this.handler.navigate();
-        });
-    }
-    setHashHandler() {
-        this.handler.disable();
-        this.handler = new _handler_hash_hash_router_handler__WEBPACK_IMPORTED_MODULE_0__["default"](this.urlChangedHandler.bind(this));
-    }
-    navigate(url) {
-        this.handler.navigate(url);
-    }
-    urlChangedHandler(requestParameters) {
-        console.log('requestParameters', requestParameters);
-        const pathForFind = requestParameters.path.replace(/\/$/, '');
-        console.log('pathForFind:', pathForFind);
-        const route = this.routes.find((item) => item.path === pathForFind);
-        if (!route) {
-            this.redirectToNotFoundPage();
-            return;
-        }
-        route.callback();
-    }
-    redirectToNotFoundPage() {
-        const notFoundPage = this.routes.find((item) => item.path === _pages__WEBPACK_IMPORTED_MODULE_2__.Pages.NOT_FOUND);
-        if (notFoundPage) {
-            this.navigate(notFoundPage.path);
-        }
-    }
-}
-
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ Router)\n/* harmony export */ });\n/* harmony import */ var _handler_hash_hash_router_handler__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./handler/hash/hash-router-handler */ \"./src/app/router/handler/hash/hash-router-handler.ts\");\n/* harmony import */ var _handler_history_router_handler__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./handler/history-router-handler */ \"./src/app/router/handler/history-router-handler.ts\");\n/* harmony import */ var _pages__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./pages */ \"./src/app/router/pages.ts\");\n\n\n\nclass Router {\n    constructor(routes) {\n        this.routes = routes;\n        this.handler = new _handler_history_router_handler__WEBPACK_IMPORTED_MODULE_1__[\"default\"](this.urlChangedHandler.bind(this));\n        document.addEventListener('DOMContentLoaded', () => {\n            this.handler.navigate('');\n        });\n    }\n    setHashHandler() {\n        this.handler.disable();\n        this.handler = new _handler_hash_hash_router_handler__WEBPACK_IMPORTED_MODULE_0__[\"default\"](this.urlChangedHandler.bind(this));\n    }\n    navigate(url) {\n        this.handler.navigate(url);\n    }\n    urlChangedHandler(requestParameters) {\n        console.log('requestParameters', requestParameters);\n        const pathForFind = requestParameters.path.replace(/\\/$/, '');\n        console.log('pathForFind:', pathForFind);\n        const route = this.routes.find((item) => item.path === pathForFind);\n        if (!route) {\n            this.redirectToNotFoundPage();\n            return;\n        }\n        route.callback();\n    }\n    redirectToNotFoundPage() {\n        const notFoundPage = this.routes.find((item) => item.path === _pages__WEBPACK_IMPORTED_MODULE_2__.Pages.NOT_FOUND);\n        if (notFoundPage) {\n            this.navigate(notFoundPage.path);\n        }\n    }\n}\n\n\n//# sourceURL=webpack:///./src/app/router/router.ts?");
 
 /***/ }),
 
@@ -267,83 +76,7 @@ class Router {
   \******************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   ElementCreator: () => (/* binding */ ElementCreator)
-/* harmony export */ });
-const DEFAULT_TEXT_CONTENT = '';
-const DEFAULT_CSS_CLASSES = [];
-class ElementCreator {
-    constructor(parameters) {
-        this.element = document.createElement(parameters.tag);
-        this.createElement(parameters);
-    }
-    getElement() {
-        return this.element;
-    }
-    addInnerElement(element) {
-        if (element instanceof ElementCreator) {
-            this.element.append(element.getElement());
-        }
-        else {
-            this.element.append(element);
-        }
-    }
-    removeElement() {
-        this.element.remove();
-    }
-    getContext() {
-        if (!(this.element instanceof HTMLCanvasElement)) {
-            throw new TypeError('Element is not a canvas.');
-        }
-        const context = this.element.getContext('2d');
-        if (!context) {
-            throw new Error('Failed to get 2D context from canvas.');
-        }
-        return context;
-    }
-    getCanvasElement() {
-        /*const convas= this.element;*/
-        if (!(this.element instanceof HTMLCanvasElement)) {
-            throw new TypeError('Element is not a canvas.');
-        }
-        // convas instanceof HTMLCanvasElement
-        return this.element;
-    }
-    createElement(parameters) {
-        this.setCssClasses(parameters.classNames);
-        this.setTextContent(parameters.textContent);
-        this.setCallback(parameters.callback);
-        this.setAttributes(parameters.attributes);
-    }
-    setTextContent(text = DEFAULT_TEXT_CONTENT) {
-        this.element.textContent = text;
-    }
-    setCallback(callback) {
-        if (this.element instanceof HTMLInputElement &&
-            typeof callback === 'function') {
-            this.element.addEventListener('input', (event) => {
-                callback(event);
-            });
-        }
-        if (typeof callback === 'function') {
-            this.element.addEventListener('click', (event) => {
-                callback(event);
-            });
-        }
-    }
-    setCssClasses(cssClasses = DEFAULT_CSS_CLASSES) {
-        this.element.classList.add(...cssClasses);
-    }
-    setAttributes(attributes) {
-        if (attributes) {
-            for (const [key, value] of Object.entries(attributes)) {
-                this.element.setAttribute(key, value);
-            }
-        }
-    }
-}
-
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   ElementCreator: () => (/* binding */ ElementCreator)\n/* harmony export */ });\nconst DEFAULT_TEXT_CONTENT = '';\nconst DEFAULT_CSS_CLASSES = [];\nclass ElementCreator {\n    constructor(parameters) {\n        this.element = document.createElement(parameters.tag);\n        this.createElement(parameters);\n    }\n    getElement() {\n        return this.element;\n    }\n    addInnerElement(element) {\n        if (element instanceof ElementCreator) {\n            this.element.append(element.getElement());\n        }\n        else {\n            this.element.append(element);\n        }\n    }\n    removeElement() {\n        this.element.remove();\n    }\n    getContext() {\n        if (!(this.element instanceof HTMLCanvasElement)) {\n            throw new TypeError('Element is not a canvas.');\n        }\n        const context = this.element.getContext('2d');\n        if (!context) {\n            throw new Error('Failed to get 2D context from canvas.');\n        }\n        return context;\n    }\n    getCanvasElement() {\n        /*const convas= this.element;*/\n        if (!(this.element instanceof HTMLCanvasElement)) {\n            throw new TypeError('Element is not a canvas.');\n        }\n        // convas instanceof HTMLCanvasElement\n        return this.element;\n    }\n    createElement(parameters) {\n        this.setCssClasses(parameters.classNames);\n        this.setTextContent(parameters.textContent);\n        this.setCallback(parameters.callback);\n        this.setAttributes(parameters.attributes);\n    }\n    setTextContent(text = DEFAULT_TEXT_CONTENT) {\n        this.element.textContent = text;\n    }\n    setCallback(callback) {\n        if (this.element instanceof HTMLInputElement &&\n            typeof callback === 'function') {\n            this.element.addEventListener('input', (event) => {\n                callback(event);\n            });\n        }\n        if (typeof callback === 'function') {\n            this.element.addEventListener('click', (event) => {\n                callback(event);\n            });\n        }\n    }\n    setCssClasses(cssClasses = DEFAULT_CSS_CLASSES) {\n        this.element.classList.add(...cssClasses);\n    }\n    setAttributes(attributes) {\n        if (attributes) {\n            for (const [key, value] of Object.entries(attributes)) {\n                this.element.setAttribute(key, value);\n            }\n        }\n    }\n}\n\n\n//# sourceURL=webpack:///./src/app/until/element-creator.ts?");
 
 /***/ }),
 
@@ -353,27 +86,7 @@ class ElementCreator {
   \********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ HeaderView)
-/* harmony export */ });
-/* harmony import */ var _view__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../view */ "./src/app/view/view.ts");
-
-const DEFAULT_HEADER_CLASS = {
-    HEADER: 'header',
-};
-const DEFAULT_HEADER_TEXT = 'Decision Making Tool';
-const defaultHeaderParameters = {
-    tag: 'header',
-    textContent: DEFAULT_HEADER_TEXT,
-    classNames: [DEFAULT_HEADER_CLASS.HEADER],
-};
-class HeaderView extends _view__WEBPACK_IMPORTED_MODULE_0__["default"] {
-    constructor(parameters = defaultHeaderParameters) {
-        super(parameters);
-    }
-}
-
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ HeaderView)\n/* harmony export */ });\n/* harmony import */ var _view__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../view */ \"./src/app/view/view.ts\");\n\nconst DEFAULT_HEADER_CLASS = {\n    HEADER: 'header',\n};\nconst DEFAULT_HEADER_TEXT = 'Decision Making Tool';\nconst defaultHeaderParameters = {\n    tag: 'header',\n    textContent: DEFAULT_HEADER_TEXT,\n    classNames: [DEFAULT_HEADER_CLASS.HEADER],\n};\nclass HeaderView extends _view__WEBPACK_IMPORTED_MODULE_0__[\"default\"] {\n    constructor(parameters = defaultHeaderParameters) {\n        super(parameters);\n    }\n}\n\n\n//# sourceURL=webpack:///./src/app/view/header/header-view.ts?");
 
 /***/ }),
 
@@ -383,32 +96,7 @@ class HeaderView extends _view__WEBPACK_IMPORTED_MODULE_0__["default"] {
   \****************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ MainView)
-/* harmony export */ });
-/* harmony import */ var _view__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../view */ "./src/app/view/view.ts");
-
-const DEFAULT_HEADER_CLASS = {
-    MAIN: 'main',
-};
-const defaultMainParameters = {
-    tag: 'main',
-    classNames: [DEFAULT_HEADER_CLASS.MAIN],
-};
-class MainView extends _view__WEBPACK_IMPORTED_MODULE_0__["default"] {
-    constructor(parameters = defaultMainParameters) {
-        super(parameters);
-    }
-    setContent(content) {
-        const htmlElement = this.viewElementCreator.getElement();
-        while (htmlElement.firstElementChild) {
-            htmlElement.firstElementChild.remove();
-        }
-        this.viewElementCreator.addInnerElement(content.getHtmlElement());
-    }
-}
-
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ MainView)\n/* harmony export */ });\n/* harmony import */ var _view__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../view */ \"./src/app/view/view.ts\");\n\nconst DEFAULT_HEADER_CLASS = {\n    MAIN: 'main',\n};\nconst defaultMainParameters = {\n    tag: 'main',\n    classNames: [DEFAULT_HEADER_CLASS.MAIN],\n};\nclass MainView extends _view__WEBPACK_IMPORTED_MODULE_0__[\"default\"] {\n    constructor(parameters = defaultMainParameters) {\n        super(parameters);\n    }\n    setContent(content) {\n        const htmlElement = this.viewElementCreator.getElement();\n        while (htmlElement.firstElementChild) {\n            htmlElement.firstElementChild.remove();\n        }\n        this.viewElementCreator.addInnerElement(content.getHtmlElement());\n    }\n}\n\n\n//# sourceURL=webpack:///./src/app/view/main/main-view.ts?");
 
 /***/ }),
 
@@ -418,25 +106,17 @@ class MainView extends _view__WEBPACK_IMPORTED_MODULE_0__["default"] {
   \******************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ View)
-/* harmony export */ });
-/* harmony import */ var _until_element_creator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../until/element-creator */ "./src/app/until/element-creator.ts");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ View)\n/* harmony export */ });\n/* harmony import */ var _until_element_creator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../until/element-creator */ \"./src/app/until/element-creator.ts\");\n\nclass View {\n    constructor(parameters) {\n        this.viewElementCreator = this.createView(parameters);\n    }\n    getHtmlElement() {\n        return this.viewElementCreator.getElement();\n    }\n    createView(parameters) {\n        this.viewElementCreator = new _until_element_creator__WEBPACK_IMPORTED_MODULE_0__.ElementCreator(parameters);\n        return this.viewElementCreator;\n    }\n}\n\n\n//# sourceURL=webpack:///./src/app/view/view.ts?");
 
-class View {
-    constructor(parameters) {
-        this.viewElementCreator = this.createView(parameters);
-    }
-    getHtmlElement() {
-        return this.viewElementCreator.getElement();
-    }
-    createView(parameters) {
-        this.viewElementCreator = new _until_element_creator__WEBPACK_IMPORTED_MODULE_0__.ElementCreator(parameters);
-        return this.viewElementCreator;
-    }
-}
+/***/ }),
 
+/***/ "./src/index.ts":
+/*!**********************!*\
+  !*** ./src/index.ts ***!
+  \**********************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./style.scss */ \"./src/style.scss\");\n/* harmony import */ var _app_app__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./app/app */ \"./src/app/app.ts\");\n\n\nnew _app_app__WEBPACK_IMPORTED_MODULE_1__[\"default\"]();\n\n\n//# sourceURL=webpack:///./src/index.ts?");
 
 /***/ }),
 
@@ -446,9 +126,7 @@ class View {
   \************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-__webpack_require__.r(__webpack_exports__);
-// extracted by mini-css-extract-plugin
-
+eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extract-plugin\n\n\n//# sourceURL=webpack:///./src/style.scss?");
 
 /***/ })
 
@@ -713,21 +391,11 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 	})();
 /******/ 	
 /************************************************************************/
-var __webpack_exports__ = {};
-// This entry needs to be wrapped in an IIFE because it needs to be isolated against other modules in the chunk.
-(() => {
-/*!**********************!*\
-  !*** ./src/index.ts ***!
-  \**********************/
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./style.scss */ "./src/style.scss");
-/* harmony import */ var _app_app__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./app/app */ "./src/app/app.ts");
-
-
-new _app_app__WEBPACK_IMPORTED_MODULE_1__["default"]();
-
-})();
-
+/******/ 	
+/******/ 	// startup
+/******/ 	// Load entry module and return exports
+/******/ 	// This entry module can't be inlined because the eval devtool is used.
+/******/ 	var __webpack_exports__ = __webpack_require__("./src/index.ts");
+/******/ 	
 /******/ })()
 ;
-//# sourceMappingURL=index.js.map
