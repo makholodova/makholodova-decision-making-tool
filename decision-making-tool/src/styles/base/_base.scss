@@ -1,0 +1,19 @@
+:root {
+  --max-width: 1024px;
+  --max-height: 800px;
+  --default-color: #000;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  max-width: var(--max-width);
+  height: 100vh;
+  margin: 0 auto;
+}
+
+body:has(dialog[open]) {
+  overflow: hidden;
+}

@@ -1,0 +1,39 @@
+.decision-picker {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+
+.decision-picker-container {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.duration {
+  max-width: 80px;
+}
+
+.duration::-webkit-outer-spin-button,
+.duration::-webkit-inner-spin-button {
+  margin: 0;
+  appearance: none;
+}
+
+.picked-option {
+  transform: scale(1);
+  color: #04040a;
+  transition:
+    transform 0.3s ease,
+    color 0.3s ease;
+}
+
+.picked {
+  transform: scale(1.4);
+  color: cadetblue;
+}
+
+.wheel-canvas {
+  max-width: 100%;
+}

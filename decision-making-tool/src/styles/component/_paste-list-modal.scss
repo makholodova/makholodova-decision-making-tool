@@ -1,0 +1,46 @@
+.dialog {
+  overflow: unset;
+  padding: 0;
+  border: unset;
+  background: unset;
+}
+
+.dialog::backdrop {
+  position: fixed;
+  inset: 0;
+
+  background: rgb(0 0 0 / 10%);
+  backdrop-filter: blur(3px);
+
+  transition: backdrop-filter 0.25s ease-in-out;
+}
+
+.form {
+  display: grid;
+  grid-template:
+    'textarea textarea' min-content
+    'cancel confirm' min-content / 1fr 1fr;
+  gap: 10px;
+
+  padding: 10px;
+  border-radius: 5px;
+
+  background-color: gray;
+}
+
+.textarea {
+  resize: none;
+  grid-area: textarea;
+  padding: 0.5rem;
+
+  /* font-family: Victor Mono, Courier New, Courier, monospace; */
+  background-color: lightgray;
+}
+
+.cancel-button {
+  grid-area: cancel;
+}
+
+.confirm-button {
+  grid-area: confirm;
+}

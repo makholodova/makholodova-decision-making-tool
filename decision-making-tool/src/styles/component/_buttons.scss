@@ -1,0 +1,52 @@
+.button {
+  cursor: pointer;
+
+  padding: 10px 15px;
+  border: 2px solid rgb(30 57 12 / 99%);
+  border-radius: 8px;
+
+  color: #fff;
+  text-align: center;
+
+  background-color: rgb(30 57 12 / 99%);
+
+  transition:
+    background 0.3s ease,
+    color 0.3s ease;
+
+  &:hover {
+    background-color: rgb(30 57 12 / 70%);
+  }
+
+  &:disabled {
+    pointer-events: none;
+    opacity: 0.8;
+    filter: grayscale(1);
+  }
+}
+
+.sound-button {
+  cursor: pointer;
+
+  width: 40px;
+  height: 40px;
+  border: none;
+
+  background-color: rgb(30 57 12 / 99%);
+  background-image: url('../../assets/svg/volume-mute.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 50%;
+
+  transition:
+    background-color 0.3s,
+    transform 0.1s;
+
+  &:hover {
+    background-color: rgb(30 57 12 / 70%);
+  }
+}
+
+.sound-off {
+  background-image: url('../../assets/svg/volume.svg');
+}

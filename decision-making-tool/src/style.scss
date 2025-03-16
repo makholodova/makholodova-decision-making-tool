@@ -1,0 +1,14 @@
+@import url('./styles/vendors/_normalize.scss');
+
+@import url('./styles/base/_base.scss');
+
+@import url('./styles/layout/_header.scss');
+@import url('./styles/layout/_main.scss');
+@import url('./styles/layout/_index.scss');
+@import url('./styles/layout/_option-list.scss');
+@import url('./styles/layout/_decision-picker.scss');
+@import url('./styles/layout/_not-found.scss');
+
+@import url('./styles/component/_buttons.scss');
+@import url('./styles/component/_paste-list-modal.scss');
+@import url('./styles/component/_valid-options-modal.scss');
