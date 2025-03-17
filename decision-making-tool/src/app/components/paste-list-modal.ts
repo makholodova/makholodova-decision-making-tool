@@ -1,23 +1,28 @@
 ﻿import { ElementCreator } from '../until/element-creator';
 import type { ElementCreatorParameters } from '../types/element-creator-parameters';
 import { parseFromCSV } from '../until/parse-from-csv';
+import {
+  BUTTONS_TEXTS,
+  ELEMENT_CLASSES,
+  PLACEHOLDER_TEXTAREA,
+} from '../constants/constants';
 
 const dialogParameters: ElementCreatorParameters = {
   tag: 'dialog',
-  classNames: ['dialog'],
+  classNames: [ELEMENT_CLASSES.DIALOG],
 };
 const formParameters: ElementCreatorParameters = {
   tag: 'form',
-  classNames: ['form'],
+  classNames: [ELEMENT_CLASSES.FORM],
   callback: (event: Event) => {
     event.preventDefault();
   },
 };
 const textareaParameters: ElementCreatorParameters = {
   tag: 'textarea',
-  classNames: ['textarea'],
+  classNames: [ELEMENT_CLASSES.TEXTAREA],
   attributes: {
-    placeholder: 'textarea',
+    placeholder: PLACEHOLDER_TEXTAREA,
     name: 'table',
     rows: '12',
     cols: '64',
@@ -42,8 +47,8 @@ export class PasteListModal extends ElementCreator {
 
     const cancelButtonParameters: ElementCreatorParameters = {
       tag: 'button',
-      classNames: ['button', 'cancel-button'],
-      textContent: 'Cancel',
+      classNames: [ELEMENT_CLASSES.BUTTON, ELEMENT_CLASSES.CANCEL_BUTTON],
+      textContent: BUTTONS_TEXTS.CLOSE,
       attributes: {
         type: 'button',
       },
@@ -52,8 +57,8 @@ export class PasteListModal extends ElementCreator {
 
     const confirmButtonParameters: ElementCreatorParameters = {
       tag: 'button',
-      classNames: ['button', 'confirm-button'],
-      textContent: 'Confirm',
+      classNames: [ELEMENT_CLASSES.BUTTON, ELEMENT_CLASSES.CONFIRM_BUTTON],
+      textContent: BUTTONS_TEXTS.CONFIRM,
       callback: (): void => {
         this.handleConfirm();
       },
@@ -77,14 +82,14 @@ export class PasteListModal extends ElementCreator {
   }
 
   public close(): void {
-    const element = this.getElement();
+    const element: HTMLElement = this.getElement();
     if (element instanceof HTMLDialogElement) {
       element.close();
     }
     this.element.remove();
   }
   private setupEventListeners(): void {
-    const element = this.getElement();
+    const element: HTMLElement = this.getElement();
     if (element instanceof HTMLDialogElement) {
       element.addEventListener('click', (event: MouseEvent) => {
         if (event.target === element) {
@@ -99,30 +104,6 @@ export class PasteListModal extends ElementCreator {
     }
   }
 
-  /*public parseFromCSV(csv: string): { title: string; weight?: string }[] {
-    if (!csv) return [];
-
-    const result: { title: string; weight?: string }[] = [];
-
-    csv.split('\n').forEach((line: string): void => {
-      const fields = line.split(/[\t,]\s*!/);
-      if (fields.length === 0) return;
-
-      let weight: string | undefined;
-      let title = fields.slice(0, -1).join(' ').trim();
-
-      const lastField = fields.at(-1);
-      if (isNaN(Number(lastField))) {
-        title = fields.join(' ').trim();
-      } else {
-        weight = lastField;
-      }
-
-      result.push({ title, weight });
-    });
-
-    return result;
-  }*/
   private getValueTextarea(): string {
     const csvElement: HTMLElement = this.textarea.getElement();
     return csvElement instanceof HTMLTextAreaElement ? csvElement.value : '';
@@ -131,7 +112,7 @@ export class PasteListModal extends ElementCreator {
   private handleConfirm(): void {
     const parsedData = parseFromCSV(this.getValueTextarea());
     this.onConfirmCallback(parsedData);
-    const textareaElement = this.textarea.getElement();
+    const textareaElement: HTMLElement = this.textarea.getElement();
     if (textareaElement instanceof HTMLTextAreaElement) {
       textareaElement.value = '';
     }

@@ -1,7 +1,8 @@
 import HashRouterHandler from './handler/hash/hash-router-handler';
 import HistoryRouterHandler from './handler/history-router-handler';
-import { Pages } from './pages';
+
 import type { RequestParameters, Route } from '../types/interfaces';
+import { Pages } from '../constants/constants';
 
 export default class Router {
   private routes: Route[];
@@ -9,12 +10,8 @@ export default class Router {
 
   constructor(routes: Route[]) {
     this.routes = routes;
-    // this.handler = new HistoryRouterHandler(this.urlChangedHandler.bind(this));
 
-    this.handler =
-      globalThis.location.pathname !== '/' && globalThis.location.hash
-        ? new HashRouterHandler(this.urlChangedHandler.bind(this))
-        : new HistoryRouterHandler(this.urlChangedHandler.bind(this));
+    this.handler = this.createHandler();
 
     document.addEventListener('DOMContentLoaded', (): void => {
       this.handler.navigate();
@@ -31,12 +28,7 @@ export default class Router {
   }
 
   private urlChangedHandler(requestParameters: RequestParameters): void {
-    console.log('requestParameters', requestParameters);
-    const pathForFind: string =
-      requestParameters.resource === ''
-        ? requestParameters.path
-        : `${requestParameters.path}`;
-    console.log('pathForFind:', pathForFind);
+    const pathForFind: string = requestParameters.path.replace(/\/$/, '');
 
     const route: Route | undefined = this.routes.find(
       (item: Route): boolean => item.path === pathForFind
@@ -47,7 +39,14 @@ export default class Router {
       return;
     }
 
-    route.callback(requestParameters.resource);
+    route.callback();
+  }
+  private createHandler(): HashRouterHandler | HistoryRouterHandler {
+    const isHashRouting =
+      globalThis.location.pathname !== '/' && globalThis.location.hash;
+    return isHashRouting
+      ? new HashRouterHandler(this.urlChangedHandler.bind(this))
+      : new HistoryRouterHandler(this.urlChangedHandler.bind(this));
   }
 
   private redirectToNotFoundPage(): void {

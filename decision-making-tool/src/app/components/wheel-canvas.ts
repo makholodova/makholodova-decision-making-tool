@@ -3,12 +3,7 @@ import type { ElementCreator } from '../until/element-creator';
 import { truncateText } from '../until/text-utiities';
 import { getRandomColorRGB } from '../until/generate-colors';
 import { shuffleArray } from '../until/shuffle-array';
-import {
-  clearCanvas,
-  drawCircle,
-  drawCursor,
-  drawStar,
-} from '../until/canvas-utiities';
+import { clearCanvas, drawCircle, drawCursor } from '../until/canvas-utiities';
 import { easeInOut } from '../until/ease-in-out';
 import type DecisionPickerView from '../view/main/decision-picker/decision-picker-view';
 
@@ -47,10 +42,10 @@ export class WheelCanvas {
     this.ctx.lineWidth = 1;
     this.ctx.stroke();
 
-    const centerX = this.canvas.width / 2;
-    const centerY = this.canvas.height / 2;
-    const radius = Math.min(centerX, centerY) - 50;
-    const innerRadius = radius * 0.15;
+    const centerX: number = this.canvas.width / 2;
+    const centerY: number = this.canvas.height / 2;
+    const radius: number = Math.min(centerX, centerY) - 20;
+    const innerRadius: number = radius * 0.15;
 
     clearCanvas(this.ctx, this.canvas);
     this.ctx.save();
@@ -64,7 +59,6 @@ export class WheelCanvas {
 
     drawCircle(this.ctx, centerX, centerY, innerRadius);
     drawCursor(this.ctx, centerX, centerY, radius);
-    drawStar(this.ctx, centerX, centerY, radius);
     if (this.isSpinning) {
       this.updatePickedOption();
     }
@@ -80,7 +74,7 @@ export class WheelCanvas {
     this.decisionPickerView.showPickedOption(this.isSpinning);
     this.spinStartTime = Date.now();
 
-    const rotationCount = this.duration + Math.random() * 3;
+    const rotationCount: number = this.duration + Math.random() * 3;
     this.totalRotationAngle = 2 * Math.PI * rotationCount;
     this.totalDuration = this.duration * 1000;
 
@@ -88,14 +82,14 @@ export class WheelCanvas {
   }
 
   private animateSpin(): void {
-    const timeCount = Date.now() - this.spinStartTime;
+    const timeCount: number = Date.now() - this.spinStartTime;
 
     if (timeCount < this.totalDuration) {
-      const timeProgress = Math.max(
+      const timeProgress: number = Math.max(
         0,
         Math.min((Date.now() - this.spinStartTime) / (this.duration * 1000), 1)
       );
-      const animationProgress = easeInOut(timeProgress);
+      const animationProgress: number = easeInOut(timeProgress);
 
       this.rotationAngle = this.totalRotationAngle * animationProgress;
 
@@ -120,7 +114,7 @@ export class WheelCanvas {
     );
     let angleStart: number = -Math.PI / 2;
 
-    for (let index = 0; index < this.listOfOptions.length; index++) {
+    for (let index: number = 0; index < this.listOfOptions.length; index++) {
       const weight: number =
         Number(this.listOfOptions[index].weight) / totalWeight;
       const angle: number = 2 * Math.PI * weight;
@@ -198,7 +192,7 @@ export class WheelCanvas {
   private getCurrentPickedOption(): OptionData | undefined {
     let currentAngle =
       ((this.rotationAngle % (2 * Math.PI)) + 2 * Math.PI) % (2 * Math.PI);
-    currentAngle = (-currentAngle + Math.PI / 2 + 2 * Math.PI) % (2 * Math.PI); // Корректируем направление
+    currentAngle = (-currentAngle + Math.PI / 2 + 2 * Math.PI) % (2 * Math.PI);
 
     let currentOption: OptionData | undefined = undefined;
     let angleStart = 0;

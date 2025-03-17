@@ -15,28 +15,45 @@
   justify-content: space-between;
 
   width: 100%;
+  padding: 10px;
   border-radius: 8px;
+
+  color: #212517;
+
+  background: rgb(242 242 239);
+  background: radial-gradient(
+    circle,
+    rgb(242 242 239 / 100%) 0%,
+    rgb(170 171 168 / 30%) 100%
+  );
 }
 
 .label {
-  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   width: 60px;
+  height: 100%;
   padding: 5px;
   border: 1px solid gray;
+  border-radius: 4px;
 
   text-align: center;
 }
 
-.title {
+.title,
+.weight {
   width: 100%;
   min-width: 60px;
+  height: 100%;
   padding: 5px;
+
+  color: #212517;
 }
 
 .weight {
   max-width: 60px;
-  padding: 5px;
 }
 
 .weight::-webkit-outer-spin-button,

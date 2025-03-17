@@ -1,26 +1,27 @@
 ﻿import HeaderView from './view/header/header-view';
 import MainView from './view/main/main-view';
 import type View from './view/view';
-import { Pages } from './router/pages';
+
 import Router from './router/router';
 import type { Route } from './types/interfaces';
 import { Sounds } from './components/sound';
+import { Pages } from './constants/constants';
 
 export default class App {
   private headerView: HeaderView;
   private main: MainView;
   private router: Router;
   private sounds: Sounds;
+  private routes: Route[];
 
   constructor() {
-    const routes: Route[] = this.createRoutes();
-    this.router = new Router(routes);
     this.sounds = new Sounds();
     this.headerView = new HeaderView();
     this.main = new MainView();
+    this.routes = this.createRoutes();
+    this.router = new Router(this.routes);
 
     this.router.setHashHandler();
-
     this.createView();
   }
 
@@ -29,7 +30,6 @@ export default class App {
       this.headerView.getHtmlElement(),
       this.main.getHtmlElement()
     );
-    //getOptionsData();
   }
 
   private createRoutes(): Route[] {

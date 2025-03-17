@@ -2,48 +2,30 @@
 import type { ElementCreatorParameters } from '../../../types/element-creator-parameters';
 import { ElementCreator } from '../../../until/element-creator';
 import type Router from '../../../router/router';
-import { Pages } from '../../../router/pages';
-import { OptionCreator } from '../../../until/input-field/option-creator';
-
-import {
-  clearOptions,
-  loadOptions,
-  saveOptions,
-} from '../../../../services/local-storage-service';
 import { PasteListModal } from '../../../components/paste-list-modal';
-import type { OptionData } from '../../../types/interfaces';
-import { getOptionsData } from '../../../until/get-options-data';
 import { ValidOptionsModal } from '../../../components/valid-options-modal';
 import type { Sounds } from '../../../components/sound';
+import {
+  BUTTONS_TEXTS,
+  ELEMENT_CLASSES,
+  Pages,
+} from '../../../constants/constants';
+import { OptionManager } from '../../../components/option-manager';
+import { getOptionsData } from '../../../until/get-options-data';
 
-const DEFAULT_INDEX_CLASS = {
-  OPTIONS: 'options',
-  BUTTON: 'button',
-  ADD_OPTION_BUTTON: 'add-option-button',
-  PASTE_LIST_BUTTON: 'paste-list-button',
-  CLEAR_LIST_BUTTON: 'clear-list-button',
-  SAVE_LIST_BUTTON: 'save-list-button',
-  LOAD_LIST_BUTTON: 'load-list-button',
-  START_BUTTON: 'start-button',
-};
 const defaultErrorParameters: ElementCreatorParameters = {
   tag: 'section',
-  classNames: [DEFAULT_INDEX_CLASS.OPTIONS],
+  classNames: [ELEMENT_CLASSES.OPTIONS],
 };
 
-const listParames = {
+const listParameters = {
   tag: 'ul',
-  classNames: ['option-list'],
+  classNames: [ELEMENT_CLASSES.OPTION_LIST],
 };
 
 export default class IndexView extends View {
-  private creatorList: ElementCreator;
-  private optionParames = {
-    tag: 'li',
-    classNames: ['option'],
-  };
-  private optionIdCounter: number = 1;
-  private optionInstances: OptionCreator[] = [];
+  private creatorList = new ElementCreator(listParameters);
+  private optionManager: OptionManager;
   private dialog: PasteListModal;
   private sounds: Sounds;
 
@@ -54,242 +36,77 @@ export default class IndexView extends View {
   ) {
     super(parameters);
     this.sounds = sound;
-    this.creatorList = new ElementCreator(listParames);
     this.dialog = new PasteListModal((parsedData) =>
-      this.pasteList(parsedData)
+      this.optionManager.pasteList(parsedData)
+    );
+    this.optionManager = new OptionManager(
+      this.creatorList.getElement(),
+      this.updateView.bind(this)
     );
     this.configureView(router);
+  }
+  private static showDialog(dialog: PasteListModal | ValidOptionsModal): void {
+    document.body.append(dialog.getElement());
+    dialog.show();
   }
 
   private configureView(router: Router): void {
     const buttons = [
       {
-        class: DEFAULT_INDEX_CLASS.ADD_OPTION_BUTTON,
-        text: 'Add Option',
-        action: (): void => this.createAndAddOption(),
+        class: ELEMENT_CLASSES.ADD_OPTION_BUTTON,
+        text: BUTTONS_TEXTS.ADD_OPTION,
+        action: (): void => this.optionManager.createAndAddOption(),
       },
       {
-        class: DEFAULT_INDEX_CLASS.PASTE_LIST_BUTTON,
-        text: 'Paste list',
+        class: ELEMENT_CLASSES.PASTE_LIST_BUTTON,
+        text: BUTTONS_TEXTS.PASTE_LIST,
         action: (): void => {
-          //this.dialog = new PasteListModal((parsedData) => this.pasteList(parsedData));
-          document.body.append(this.dialog.getElement());
-          this.dialog.show();
+          IndexView.showDialog(this.dialog);
         },
       },
       {
-        class: DEFAULT_INDEX_CLASS.CLEAR_LIST_BUTTON,
-        text: 'Clear list',
-        action: (): void => this.clearOptions(),
+        class: ELEMENT_CLASSES.CLEAR_LIST_BUTTON,
+        text: BUTTONS_TEXTS.CLEAR_LIST,
+        action: (): void => this.optionManager.clearOptions(),
       },
       {
-        class: DEFAULT_INDEX_CLASS.SAVE_LIST_BUTTON,
-        text: 'Save list to file',
-        action: (): void => this.saveListToFile(),
+        class: ELEMENT_CLASSES.SAVE_LIST_BUTTON,
+        text: BUTTONS_TEXTS.SAVE_LIST,
+        action: (): void => this.optionManager.saveListToFile(),
       },
       {
-        class: DEFAULT_INDEX_CLASS.LOAD_LIST_BUTTON,
-        text: 'Load list from file',
-        action: (): void => this.loadListFromFile(),
+        class: ELEMENT_CLASSES.LOAD_LIST_BUTTON,
+        text: BUTTONS_TEXTS.LOAD_LIST,
+        action: (): void => this.optionManager.loadListFromFile(),
       },
       {
-        class: DEFAULT_INDEX_CLASS.START_BUTTON,
-        text: 'Start',
+        class: ELEMENT_CLASSES.START_BUTTON,
+        text: BUTTONS_TEXTS.START,
         action: (): void => {
-          if (!getOptionsData()) {
-            const dialog = new ValidOptionsModal();
-            document.body.append(dialog.getElement());
-            dialog.show();
+          if (getOptionsData()) {
+            router.navigate(Pages.DECISION_PICKER);
+          } else {
+            IndexView.showDialog(new ValidOptionsModal());
           }
-
-          router.navigate(Pages.DECISION_PICKER);
         },
       },
     ];
 
-    this.loadOptions();
-
     this.viewElementCreator.addInnerElement(this.creatorList);
 
     for (const { class: className, text, action } of buttons) {
-      const buttonParameters: ElementCreatorParameters = {
-        tag: 'button',
-        classNames: [DEFAULT_INDEX_CLASS.BUTTON, className],
-        textContent: text,
-        callback: action,
-      };
       this.viewElementCreator.addInnerElement(
-        new ElementCreator(buttonParameters)
+        new ElementCreator({
+          tag: 'button',
+          classNames: [ELEMENT_CLASSES.BUTTON, className],
+          textContent: text,
+          callback: action,
+        })
       );
     }
   }
 
-  private createAndAddOption(): void {
-    const newOption = new OptionCreator(this.optionParames, () => {
-      if (this.optionInstances.length === 0) {
-        this.optionIdCounter = 1;
-      }
-      this.saveOptions();
-    });
-    const optionId = `#${this.optionIdCounter}`;
-    newOption.setValueId(`${optionId}`);
-    this.optionIdCounter++;
-
-    newOption.onRemove = (option: OptionCreator): void => {
-      this.removeOptionInstance(option);
-    };
-
-    this.optionInstances.push(newOption);
-    this.creatorList.addInnerElement(newOption);
-    this.saveOptions();
-  }
-
-  private getOptionsData(): OptionData[] {
-    return this.optionInstances.map((option) => option.getValues());
-  }
-
-  private saveOptions(): void {
-    const options: OptionData[] = this.getOptionsData();
-    saveOptions(options);
-    localStorage.setItem('optionIdCounter', String(this.optionIdCounter));
-  }
-
-  private removeOptionInstance(option: OptionCreator): void {
-    this.optionInstances = this.optionInstances.filter((opt) => opt !== option);
-    this.saveOptions();
-  }
-
-  private loadOptions(): void {
-    const savedOptions: OptionData[] = loadOptions();
-    const savedCounter = localStorage.getItem('optionIdCounter');
-
-    if (savedCounter) {
-      this.optionIdCounter = Number.parseInt(savedCounter, 10);
-    }
-    if (savedCounter) {
-      for (const option of savedOptions) {
-        const newOption = new OptionCreator(this.optionParames, () =>
-          this.saveOptions()
-        );
-        newOption.setValueId(option.id);
-        newOption.setValueTitle(option.title);
-        newOption.setValueWeight(option.weight);
-
-        newOption.onRemove = (option: OptionCreator): void =>
-          this.removeOptionInstance(option);
-
-        this.optionInstances.push(newOption);
-
-        this.creatorList.addInnerElement(newOption);
-      }
-    } else {
-      this.createAndAddOption();
-    }
-  }
-
-  private clearOptions(): void {
-    clearOptions();
-    const listElement = this.creatorList.getElement();
-    while (listElement.firstChild) {
-      listElement.firstChild.remove();
-    }
-    this.optionIdCounter = 1;
-    this.optionInstances = [];
-    this.saveOptions();
-  }
-  private saveListToFile(): void {
-    const options: OptionData[] = loadOptions();
-    const lastId = this.optionIdCounter - 1;
-
-    const dataToSave = {
-      list: options,
-      lastId: lastId,
-    };
-    const optionsJson: string = JSON.stringify(dataToSave, undefined, 2);
-
-    const blob = new Blob([optionsJson], { type: 'application/json' });
-    const url: string = URL.createObjectURL(blob);
-
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = 'option-list.json';
-    link.click();
-
-    URL.revokeObjectURL(url);
-  }
-
-  private loadListFromFile(): void {
-    const input: HTMLInputElement = document.createElement('input');
-    input.type = 'file';
-    input.accept = 'application/json';
-    input.addEventListener('change', async (event: Event): Promise<void> => {
-      const target = event.target;
-
-      if (target instanceof HTMLInputElement) {
-        const file = target.files?.[0];
-        if (!file) return;
-
-        const result = await file.text();
-        const data = JSON.parse(result);
-
-        if (
-          !data.list ||
-          !Array.isArray(data.list) ||
-          typeof data.lastId !== 'number'
-        ) {
-          console.warn('Invalid file format, creating a new option.');
-          this.createAndAddOption();
-          return;
-        }
-
-        this.clearOptions();
-        this.optionIdCounter = data.lastId + 1;
-
-        for (const optionData of data.list) {
-          const newOption = new OptionCreator(this.optionParames, () =>
-            this.saveOptions()
-          );
-          newOption.setValueId(optionData.id);
-          newOption.setValueTitle(optionData.title);
-          newOption.setValueWeight(optionData.weight);
-
-          newOption.onRemove = (option: OptionCreator): void =>
-            this.removeOptionInstance(option);
-
-          this.optionInstances.push(newOption);
-          this.creatorList.addInnerElement(newOption);
-        }
-
-        this.saveOptions();
-      } else {
-        console.error('Unexpected target type:', target);
-      }
-    });
-
-    input.click();
-  }
-
-  private pasteList(parsedData: { title: string; weight?: string }[]): void {
-    console.log('Received parsed data:', parsedData);
-    for (const optionData of parsedData) {
-      const newOption = new OptionCreator(this.optionParames, () =>
-        this.saveOptions()
-      );
-
-      const id = `#${this.optionIdCounter}`;
-      newOption.setValueId(id);
-      newOption.setValueTitle(optionData.title);
-
-      const weight = optionData.weight || '';
-      newOption.setValueWeight(weight);
-
-      newOption.onRemove = (option: OptionCreator): void =>
-        this.removeOptionInstance(option);
-
-      this.optionInstances.push(newOption);
-      this.creatorList.addInnerElement(newOption);
-      this.optionIdCounter++;
-    }
-    this.saveOptions();
+  private updateView(): void {
+    this.optionManager.saveOptions();
   }
 }

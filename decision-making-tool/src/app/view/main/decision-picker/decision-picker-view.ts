@@ -2,23 +2,17 @@
 import type { ElementCreatorParameters } from '../../../types/element-creator-parameters';
 import { ElementCreator } from '../../../until/element-creator';
 import type Router from '../../../router/router';
-import { Pages } from '../../../router/pages';
+
 import type { OptionData } from '../../../types/interfaces';
 import { WheelCanvas } from '../../../components/wheel-canvas';
 import { getOptionsData } from '../../../until/get-options-data';
 import type { Sounds } from '../../../components/sound';
-
-const DEFAULT_DECISION_PICKER_CLASS = {
-  SECTION: 'decision-picker',
-  BUTTON: 'button',
-  BACK_BUTTON: 'back-button',
-  SOUND_BUTTON: 'sound-button',
-  PICK_BUTTON: 'pick-button',
-};
+import { ELEMENT_CLASSES, Pages } from '../../../constants/constants';
+import { InputElementCreator } from '../../../until/input-element-creator';
 
 const defaultErrorParameters: ElementCreatorParameters = {
   tag: 'section',
-  classNames: [DEFAULT_DECISION_PICKER_CLASS.SECTION],
+  classNames: [ELEMENT_CLASSES.DECISION_PICKER],
 };
 const DecisionPickerContainerParameters: ElementCreatorParameters = {
   tag: 'form',
@@ -27,12 +21,12 @@ const DecisionPickerContainerParameters: ElementCreatorParameters = {
 
 const labelParameters: ElementCreatorParameters = {
   tag: 'label',
-  classNames: ['duration-label'],
+  classNames: [ELEMENT_CLASSES.DURATION_LABEL],
   textContent: 'Time: ',
 };
 const inputParameters: ElementCreatorParameters = {
   tag: 'input',
-  classNames: ['duration'],
+  classNames: [ELEMENT_CLASSES.DURATION],
   attributes: {
     type: 'number',
     value: '12',
@@ -44,15 +38,15 @@ const inputParameters: ElementCreatorParameters = {
 
 const pickedOptionParameters: ElementCreatorParameters = {
   tag: 'p',
-  classNames: ['picked-option'],
+  classNames: [ELEMENT_CLASSES.PICKED_OPTION],
   textContent: 'Press start button',
 };
 
 const canvasParameters: ElementCreatorParameters = {
   tag: 'canvas',
-  classNames: ['wheel-canvas'],
+  classNames: [ELEMENT_CLASSES.WHEEL_CANVAS],
   textContent: 'Decision Picker Wheel',
-  attributes: { width: '512', height: '512' },
+  attributes: { width: '450', height: '450' },
 };
 
 export default class DecisionPickerView extends View {
@@ -60,7 +54,7 @@ export default class DecisionPickerView extends View {
   private wheelCanvas: ElementCreator;
   private decisionPickerContainer: ElementCreator;
   private labelElement: ElementCreator;
-  private inputElement: ElementCreator;
+  private inputElement: InputElementCreator;
   private listOfOptions: OptionData[];
   private wheel: WheelCanvas;
   private buttons: ElementCreator[] = [];
@@ -68,7 +62,9 @@ export default class DecisionPickerView extends View {
 
   constructor(router: Router, sound: Sounds) {
     super(defaultErrorParameters);
+
     this.sounds = sound;
+
     const listOfOptions: OptionData[] | undefined = getOptionsData();
     if (listOfOptions) {
       this.listOfOptions = listOfOptions;
@@ -82,8 +78,10 @@ export default class DecisionPickerView extends View {
     );
 
     this.labelElement = new ElementCreator(labelParameters);
-    this.inputElement = new ElementCreator(inputParameters);
-
+    this.inputElement = new InputElementCreator(
+      inputParameters,
+      (): void => {}
+    );
     this.pickedOption = new ElementCreator(pickedOptionParameters);
     this.wheelCanvas = new ElementCreator(canvasParameters);
 
@@ -101,9 +99,9 @@ export default class DecisionPickerView extends View {
   }
   public showPickedOption(isSpinning: boolean): void {
     if (isSpinning) {
-      this.pickedOption.getElement().classList.remove('picked');
+      this.pickedOption.getElement().classList.remove(ELEMENT_CLASSES.PICKED);
     } else {
-      this.pickedOption.getElement().classList.add('picked');
+      this.pickedOption.getElement().classList.add(ELEMENT_CLASSES.PICKED);
       this.sounds.playWinSound();
     }
   }
@@ -114,37 +112,41 @@ export default class DecisionPickerView extends View {
         button.getElement().setAttribute('disabled', 'true');
       } else button.getElement().removeAttribute('disabled');
     }
+
+    const inputElement = this.inputElement.getElement();
     if (isDisabled) {
-      this.inputElement.getElement().setAttribute('disabled', 'true');
-    } else this.inputElement.getElement().removeAttribute('disabled');
+      inputElement.setAttribute('disabled', 'true');
+    } else inputElement.removeAttribute('disabled');
   }
 
   private getSeconds(): number {
-    const durationElement: HTMLElement = this.inputElement.getElement();
-    const durationValue =
-      durationElement instanceof HTMLInputElement ? durationElement.value : '';
-
+    const durationValue = this.inputElement.getValue()
+      ? Number(this.inputElement.getValue())
+      : '';
     return Number(durationValue);
   }
 
   private manageSoundsButton(event: Event): void {
     const buttonElement = event.target;
     if (buttonElement instanceof HTMLButtonElement) {
-      buttonElement.classList.toggle('sound-off', !this.sounds.enabled);
+      buttonElement.classList.toggle(
+        ELEMENT_CLASSES.SOUND_OFF,
+        !this.sounds.enabled
+      );
     }
     this.sounds.toggleAudio();
   }
 
   private configureView(router: Router): void {
     this.labelElement.addInnerElement(this.inputElement);
-    this.decisionPickerContainer.addInnerElement(this.labelElement);
+
     const backButton = new ElementCreator({
       tag: 'button',
       classNames: [
-        DEFAULT_DECISION_PICKER_CLASS.BUTTON,
-        DEFAULT_DECISION_PICKER_CLASS.BACK_BUTTON,
+        ELEMENT_CLASSES.BUTTON,
+        ELEMENT_CLASSES.ICON_BUTTON,
+        ELEMENT_CLASSES.BACK_BUTTON,
       ],
-      textContent: 'Back',
       attributes: { type: 'button' },
       callback: (): void => {
         router.navigate(Pages.INDEX);
@@ -154,8 +156,9 @@ export default class DecisionPickerView extends View {
     const soundButton = new ElementCreator({
       tag: 'button',
       classNames: [
-        DEFAULT_DECISION_PICKER_CLASS.BUTTON,
-        DEFAULT_DECISION_PICKER_CLASS.SOUND_BUTTON,
+        ELEMENT_CLASSES.BUTTON,
+        ELEMENT_CLASSES.ICON_BUTTON,
+        ELEMENT_CLASSES.SOUND_BUTTON,
       ],
       attributes: { type: 'button' },
       callback: (event: Event): void => {
@@ -166,11 +169,10 @@ export default class DecisionPickerView extends View {
     const pickButton = new ElementCreator({
       tag: 'button',
       classNames: [
-        DEFAULT_DECISION_PICKER_CLASS.BUTTON,
-        DEFAULT_DECISION_PICKER_CLASS.PICK_BUTTON,
+        ELEMENT_CLASSES.BUTTON,
+        ELEMENT_CLASSES.ICON_BUTTON,
+        ELEMENT_CLASSES.PICK_BUTTON,
       ],
-      textContent: 'Start',
-      attributes: { type: 'button' },
       callback: (): void => {
         this.wheel.spinWheel(this.getSeconds());
       },
@@ -180,9 +182,10 @@ export default class DecisionPickerView extends View {
 
     this.decisionPickerContainer.addInnerElement(backButton);
     if (this.sounds.enabled) {
-      soundButton.getElement().classList.add('sound-off');
+      soundButton.getElement().classList.add(ELEMENT_CLASSES.SOUND_OFF);
     }
     this.decisionPickerContainer.addInnerElement(soundButton);
+    this.decisionPickerContainer.addInnerElement(this.labelElement);
     this.decisionPickerContainer.addInnerElement(pickButton);
 
     this.viewElementCreator.addInnerElement(this.decisionPickerContainer);

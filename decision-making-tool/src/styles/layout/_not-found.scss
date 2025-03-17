@@ -1,6 +1,10 @@
-﻿.not-found {
+.not-found {
   display: flex;
   flex-direction: column;
   gap: 30px;
   align-items: center;
+}
+
+.not-found-title {
+  color: #212517;
 }

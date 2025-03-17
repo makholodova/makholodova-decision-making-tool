@@ -5,15 +5,10 @@ export default class View {
   protected viewElementCreator: ElementCreator;
 
   constructor(parameters: ElementCreatorParameters) {
-    this.viewElementCreator = this.createView(parameters);
+    this.viewElementCreator = new ElementCreator(parameters);
   }
 
   public getHtmlElement(): HTMLElement {
     return this.viewElementCreator.getElement();
-  }
-
-  private createView(parameters: ElementCreatorParameters): ElementCreator {
-    this.viewElementCreator = new ElementCreator(parameters);
-    return this.viewElementCreator;
   }
 }

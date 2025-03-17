@@ -11,7 +11,6 @@
   public toggleAudio(): void {
     this.enabled = !this.enabled;
     localStorage.setItem('soundEnabled', JSON.stringify(this.enabled));
-    console.log(this.enabled);
   }
 
   public playWinSound(): void {

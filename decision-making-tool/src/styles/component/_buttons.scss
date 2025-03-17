@@ -1,21 +1,25 @@
 .button {
   cursor: pointer;
 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   padding: 10px 15px;
-  border: 2px solid rgb(30 57 12 / 99%);
+  border: none;
   border-radius: 8px;
 
-  color: #fff;
+  color: rgb(242 233 228);
   text-align: center;
 
-  background-color: rgb(30 57 12 / 99%);
+  background-color: rgb(79 113 96);
 
   transition:
     background 0.3s ease,
     color 0.3s ease;
 
   &:hover {
-    background-color: rgb(30 57 12 / 70%);
+    background-color: rgb(136 167 149);
   }
 
   &:disabled {
@@ -25,28 +29,36 @@
   }
 }
 
-.sound-button {
-  cursor: pointer;
-
-  width: 40px;
+.icon-button {
   height: 40px;
-  border: none;
-
-  background-color: rgb(30 57 12 / 99%);
-  background-image: url('../../assets/svg/volume-mute.svg');
   background-repeat: no-repeat;
   background-position: center;
   background-size: 50%;
+}
 
-  transition:
-    background-color 0.3s,
-    transform 0.1s;
-
-  &:hover {
-    background-color: rgb(30 57 12 / 70%);
-  }
+.sound-button {
+  grid-area: sound-button;
+  background-image: url('../../assets/svg/volume-mute.svg');
 }
 
 .sound-off {
   background-image: url('../../assets/svg/volume.svg');
+  background-size: 40%;
+}
+
+.delete-button {
+  width: 60px;
+  background-image: url('../../assets/svg/delete.svg');
+}
+
+.pick-button {
+  grid-area: pick-button;
+  background-image: url('../../assets/svg/start.svg');
+  background-size: 25%;
+}
+
+.back-button {
+  grid-area: back-button;
+  background-image: url('../../assets/svg/return.svg');
+  background-size: 35%;
 }

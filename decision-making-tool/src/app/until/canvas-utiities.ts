@@ -12,13 +12,6 @@ export function drawCursor(
   centerY: number,
   radius: number
 ): void {
-  /*context.beginPath();
-  context.moveTo(centerX - 25, centerY - radius - 20);
-  context.lineTo(centerX, centerY - radius - 7);
-  context.lineTo(centerX + 25, centerY - radius - 20);
-  context.lineTo(centerX, centerY - radius + 30);
-  context.closePath();*/
-
   context.beginPath();
   context.moveTo(centerX + radius + 20, centerY + 25);
   context.lineTo(centerX + radius + 7, centerY);
@@ -26,7 +19,7 @@ export function drawCursor(
   context.lineTo(centerX + radius - 30, centerY);
   context.closePath();
 
-  context.fillStyle = 'rgba(49,255,195,0.99)';
+  context.fillStyle = '#DBC7C9';
   context.fill();
   context.stroke();
 }
@@ -58,7 +51,7 @@ export function drawStar(
   }
 
   context.closePath();
-  context.fillStyle = 'rgba(241,248,4,0.99)';
+  context.fillStyle = '#DBC7C9';
   context.fill();
   context.stroke();
 }
@@ -70,7 +63,7 @@ export function drawCircle(
 ): void {
   context.beginPath();
   context.arc(centerX, centerY, radius, 0, Math.PI * 2);
-  context.fillStyle = '#FFF';
+  context.fillStyle = '#F2F2EF';
   context.fill();
   context.stroke();
 }

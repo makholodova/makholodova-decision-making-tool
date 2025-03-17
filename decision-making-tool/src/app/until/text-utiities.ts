@@ -4,7 +4,7 @@
   maxWidth: number
 ): string {
   const ellipsis = '...';
-  let textWidth = context.measureText(text).width;
+  let textWidth: number = context.measureText(text).width;
 
   while (text.length > 0 && textWidth > maxWidth) {
     text = text.slice(0, -1);

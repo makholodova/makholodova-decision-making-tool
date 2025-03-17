@@ -1,13 +1,13 @@
 import View from '../view';
 import type { ElementCreatorParameters } from '../../types/element-creator-parameters';
+import { ELEMENT_CLASSES } from '../../constants/constants';
 
-const DEFAULT_HEADER_CLASS = {
-  MAIN: 'main',
-};
-const defaultMainParameters: ElementCreatorParameters = {
-  tag: 'main',
-  classNames: [DEFAULT_HEADER_CLASS.MAIN],
-};
+const defaultMainParameters: Readonly<ElementCreatorParameters> = Object.freeze(
+  {
+    tag: 'main',
+    classNames: [ELEMENT_CLASSES.MAIN],
+  }
+);
 
 export default class MainView extends View {
   constructor(parameters: ElementCreatorParameters = defaultMainParameters) {

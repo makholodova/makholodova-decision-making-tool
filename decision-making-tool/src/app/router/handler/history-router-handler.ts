@@ -21,17 +21,14 @@ export default class HistoryRouterHandler {
 
   public navigate(url?: string): void {
     if (typeof url === 'string') {
+      url = url.replace(/\/$/, '');
       HistoryRouterHandler.setHistory(url);
     }
-    const urlString = globalThis.location.pathname.slice(1);
+    const urlString = globalThis.location.pathname.replace(/\/$/, '').slice(1);
 
-    console.log('urlString', urlString);
-
-    const result: { path: string; resource: string } = {
-      path: '',
-      resource: '',
+    const result: { path: string } = {
+      path: urlString,
     };
-    [result.path = '', result.resource = ''] = urlString.split('/');
 
     this.callback(result);
   }

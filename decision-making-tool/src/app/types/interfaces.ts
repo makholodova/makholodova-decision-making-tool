@@ -4,7 +4,6 @@
 }
 export interface RequestParameters {
   path: string;
-  resource: string;
 }
 export interface OptionData {
   id: string;

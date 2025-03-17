@@ -1,7 +1,12 @@
 import type { ElementCreatorParameters } from '../types/element-creator-parameters';
+const EVENT_TYPES = {
+  CLICK: 'click',
+  INPUT: 'input',
+};
 
-const DEFAULT_TEXT_CONTENT: string = '';
-const DEFAULT_CSS_CLASSES: string[] = [];
+const ERROR_MESSAGES = {
+  NOT_A_CANVAS: 'Element is not a canvas.',
+};
 
 export class ElementCreator {
   protected element: HTMLElement;
@@ -27,24 +32,13 @@ export class ElementCreator {
   }
 
   public getContext(): CanvasRenderingContext2D {
-    if (!(this.element instanceof HTMLCanvasElement)) {
-      throw new TypeError('Element is not a canvas.');
-    }
-
-    const context = this.element.getContext('2d');
-    if (!context) {
-      throw new Error('Failed to get 2D context from canvas.');
-    }
-
-    return context;
+    return this.getCanvasElement().getContext('2d')!;
   }
 
   public getCanvasElement(): HTMLCanvasElement {
-    /*const convas= this.element;*/
     if (!(this.element instanceof HTMLCanvasElement)) {
-      throw new TypeError('Element is not a canvas.');
+      throw new TypeError(ERROR_MESSAGES.NOT_A_CANVAS);
     }
-    // convas instanceof HTMLCanvasElement
     return this.element;
   }
 
@@ -54,28 +48,20 @@ export class ElementCreator {
     this.setCallback(parameters.callback);
     this.setAttributes(parameters.attributes);
   }
-  protected setTextContent(text: string = DEFAULT_TEXT_CONTENT): void {
+  protected setTextContent(text: string = ''): void {
     this.element.textContent = text;
   }
 
   protected setCallback(callback?: (event: Event) => void): void {
-    if (
-      this.element instanceof HTMLInputElement &&
-      typeof callback === 'function'
-    ) {
-      this.element.addEventListener('input', (event): void => {
-        callback(event);
-      });
-    }
-
     if (typeof callback === 'function') {
-      this.element.addEventListener('click', (event: MouseEvent): void => {
-        callback(event);
-      });
+      this.element.addEventListener(EVENT_TYPES.CLICK, callback);
+      if (this.element instanceof HTMLInputElement) {
+        this.element.addEventListener(EVENT_TYPES.INPUT, callback);
+      }
     }
   }
 
-  private setCssClasses(cssClasses: string[] = DEFAULT_CSS_CLASSES): void {
+  private setCssClasses(cssClasses: string[] = []): void {
     this.element.classList.add(...cssClasses);
   }
 

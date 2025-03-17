@@ -1,0 +1,16 @@
+﻿.dialog {
+  overflow: unset;
+  padding: 0;
+  border: unset;
+  background: unset;
+}
+
+.dialog::backdrop {
+  position: fixed;
+  inset: 0;
+
+  background: rgb(0 0 0 / 10%);
+  backdrop-filter: blur(3px);
+
+  transition: backdrop-filter 0.25s ease-in-out;
+}

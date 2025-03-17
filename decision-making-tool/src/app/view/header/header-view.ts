@@ -1,16 +1,15 @@
 import View from '../view';
 import type { ElementCreatorParameters } from '../../types/element-creator-parameters';
+import { ELEMENT_CLASSES } from '../../constants/constants';
 
-const DEFAULT_HEADER_CLASS = {
-  HEADER: 'header',
-};
-const DEFAULT_HEADER_TEXT = 'Decision Making Tool';
+const HEADER_TEXT = 'Decision Making Tool';
 
-const defaultHeaderParameters: ElementCreatorParameters = {
-  tag: 'header',
-  textContent: DEFAULT_HEADER_TEXT,
-  classNames: [DEFAULT_HEADER_CLASS.HEADER],
-};
+const defaultHeaderParameters: Readonly<ElementCreatorParameters> =
+  Object.freeze({
+    tag: 'header',
+    textContent: HEADER_TEXT,
+    classNames: [ELEMENT_CLASSES.HEADER],
+  });
 
 export default class HeaderView extends View {
   constructor(parameters: ElementCreatorParameters = defaultHeaderParameters) {

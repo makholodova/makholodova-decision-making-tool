@@ -1,24 +1,26 @@
 ﻿import { ElementCreator } from '../until/element-creator';
 import type { ElementCreatorParameters } from '../types/element-creator-parameters';
-
+import { BUTTONS_TEXTS, ELEMENT_CLASSES } from '../constants/constants';
+const DEFAULT_TITLE_TEXT = 'Please add at least 2 valid options';
+const DEFAULT_TEXT_CONTENT =
+  'An option is considered valid if its title is not empty and its weight is greater than 0';
 const dialogParameters: ElementCreatorParameters = {
   tag: 'dialog',
-  classNames: ['dialog'],
+  classNames: [ELEMENT_CLASSES.DIALOG],
 };
 const containerParameters: ElementCreatorParameters = {
   tag: 'div',
-  classNames: ['modal-container'],
+  classNames: [ELEMENT_CLASSES.MODAL_CONTAINER],
 };
 const titleParameters: ElementCreatorParameters = {
   tag: 'h3',
-  classNames: ['modal-title'],
-  textContent: 'Please add at least 2 valid options',
+  classNames: [ELEMENT_CLASSES.MODAL_TITLE],
+  textContent: DEFAULT_TITLE_TEXT,
 };
 const textParameters: ElementCreatorParameters = {
   tag: 'p',
-  classNames: ['modal-text'],
-  textContent:
-    'An option is considered valid if its title is not empty and its weight is greater than 0',
+  classNames: [ELEMENT_CLASSES.MODAL_TEXT],
+  textContent: DEFAULT_TEXT_CONTENT,
 };
 
 export class ValidOptionsModal extends ElementCreator {
@@ -32,21 +34,14 @@ export class ValidOptionsModal extends ElementCreator {
     this.container = new ElementCreator(containerParameters);
     this.title = new ElementCreator(titleParameters);
     this.text = new ElementCreator(textParameters);
-
     const closeButtonParameters: ElementCreatorParameters = {
       tag: 'button',
-      classNames: ['button', 'close-button'],
-      textContent: 'Close',
+      classNames: [ELEMENT_CLASSES.BUTTON, ELEMENT_CLASSES.CLOSE_BUTTON],
+      textContent: BUTTONS_TEXTS.CLOSE,
       callback: this.close.bind(this),
     };
-
     this.closeButton = new ElementCreator(closeButtonParameters);
-
-    this.addInnerElement(this.container);
-    this.container.addInnerElement(this.title);
-    this.container.addInnerElement(this.text);
-    this.container.addInnerElement(this.closeButton);
-    this.setupEventListeners();
+    this.configure();
   }
 
   public show(): void {
@@ -62,6 +57,13 @@ export class ValidOptionsModal extends ElementCreator {
       element.close();
     }
     this.element.remove();
+  }
+  private configure(): void {
+    this.addInnerElement(this.container);
+    this.container.addInnerElement(this.title);
+    this.container.addInnerElement(this.text);
+    this.container.addInnerElement(this.closeButton);
+    this.setupEventListeners();
   }
 
   private setupEventListeners(): void {

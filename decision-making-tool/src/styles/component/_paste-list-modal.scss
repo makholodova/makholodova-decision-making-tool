@@ -1,20 +1,3 @@
-.dialog {
-  overflow: unset;
-  padding: 0;
-  border: unset;
-  background: unset;
-}
-
-.dialog::backdrop {
-  position: fixed;
-  inset: 0;
-
-  background: rgb(0 0 0 / 10%);
-  backdrop-filter: blur(3px);
-
-  transition: backdrop-filter 0.25s ease-in-out;
-}
-
 .form {
   display: grid;
   grid-template:
@@ -23,18 +6,17 @@
   gap: 10px;
 
   padding: 10px;
+  border: 1px solid #353537;
   border-radius: 5px;
 
-  background-color: gray;
+  background-color: #cd9b9d;
 }
 
 .textarea {
   resize: none;
   grid-area: textarea;
   padding: 0.5rem;
-
-  /* font-family: Victor Mono, Courier New, Courier, monospace; */
-  background-color: lightgray;
+  background-color: #dbc7c9;
 }
 
 .cancel-button {

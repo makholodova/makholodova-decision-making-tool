@@ -6,13 +6,26 @@
 }
 
 .decision-picker-container {
-  display: flex;
-  gap: 10px;
+  display: grid;
+  grid-auto-rows: 1fr;
+  grid-template-areas:
+    'back-button sound-button'
+    'duration-label duration-label'
+    'pick-button pick-button';
+  column-gap: 5px;
   align-items: center;
+}
+
+.duration-label {
+  grid-area: duration-label;
+  font-size: 18px;
+  color: rgb(79 113 96);
 }
 
 .duration {
   max-width: 80px;
+  border: 1px solid rgb(79 113 96);
+  border-radius: 4px;
 }
 
 .duration::-webkit-outer-spin-button,
@@ -22,16 +35,25 @@
 }
 
 .picked-option {
-  transform: scale(1);
-  color: #04040a;
+  width: 100%;
+  max-width: 360px;
+  margin: 10px;
+  padding: 5px;
+  border: 2px solid #88a795;
+
+  font-size: 20px;
+  color: #5a5a58;
+  text-align: center;
+  text-wrap: nowrap;
+
   transition:
-    transform 0.3s ease,
+    border 0.3s ease,
     color 0.3s ease;
 }
 
 .picked {
-  transform: scale(1.4);
-  color: cadetblue;
+  border: 2px solid rgb(205 0 88 / 60%);
+  color: rgb(205 0 88 / 60%);
 }
 
 .wheel-canvas {
