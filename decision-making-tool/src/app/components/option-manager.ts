@@ -2,9 +2,12 @@
 import type { OptionData } from '../types/interfaces';
 import {
   clearOptions,
+  getOptionIdCounter,
   loadOptions,
   saveOptions,
+  setOptionIdCounter,
 } from '../../services/local-storage-service';
+
 const ID_PREFIX = '#';
 export class OptionManager {
   private optionInstances: OptionCreator[] = [];
@@ -51,7 +54,7 @@ export class OptionManager {
 
   public saveOptions(): void {
     saveOptions(this.getOptions());
-    localStorage.setItem('optionIdCounter', String(this.optionIdCounter));
+    setOptionIdCounter(this.optionIdCounter);
   }
 
   public saveListToFile(): void {
@@ -82,24 +85,36 @@ export class OptionManager {
     });
 
     input.addEventListener('change', async (event: Event): Promise<void> => {
-      const inputElement = event.target;
-      if (inputElement instanceof HTMLInputElement && inputElement.files) {
-        const file: File = inputElement.files[0];
+      const target = event.target;
+
+      if (target instanceof HTMLInputElement) {
+        const file = target.files?.[0];
         if (!file) return;
 
-        try {
-          const { list, lastId } = JSON.parse(await file.text());
-          if (!Array.isArray(list) || typeof lastId !== 'number')
-            throw new Error('Invalid file format');
+        const result: string = await file.text();
+        const data = JSON.parse(result);
 
-          this.clearOptions();
-          this.optionIdCounter = lastId + 1;
-          for (const { id, title, weight } of list)
-            this.createAndAddOption(id, title, weight);
-        } catch {
+        if (
+          !data.list ||
+          !Array.isArray(data.list) ||
+          typeof data.lastId !== 'number'
+        ) {
           console.warn('Invalid file format, creating a new option.');
           this.createAndAddOption();
+          return;
         }
+
+        this.clearOptions();
+
+        for (const optionData of data.list) {
+          this.createAndAddOption(
+            optionData.id,
+            optionData.title,
+            optionData.weight
+          );
+        }
+
+        this.saveOptions();
       }
     });
 
@@ -120,13 +135,13 @@ export class OptionManager {
     this.saveOptions();
   }
   private loadOptions(): void {
-    const savedOptions = loadOptions();
-    const savedCounter = Number(localStorage.getItem('optionIdCounter')) || 1;
-    this.optionIdCounter = savedCounter;
+    const savedOptions: OptionData[] = loadOptions();
+    const savedCounter: number = getOptionIdCounter();
 
-    if (savedOptions.length > 0) {
-      for (const option of savedOptions)
+    if (savedCounter) {
+      for (const option of savedOptions) {
         this.createAndAddOption(option.id, option.title, option.weight);
+      }
     } else {
       this.createAndAddOption();
     }

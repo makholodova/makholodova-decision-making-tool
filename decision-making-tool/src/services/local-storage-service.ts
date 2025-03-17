@@ -28,13 +28,21 @@ export function loadOptions(): OptionData[] {
 
 export function clearOptions(): void {
   localStorage.removeItem('options-makholodova');
-  localStorage.removeItem('optionIdCounter');
+  localStorage.removeItem('optionIdCounter-makholodova');
 }
 
 export function deleteOption(id: string): void {
   const options: OptionData[] = loadOptions();
   const updatedOptions: OptionData[] = options.filter(
-    (option) => option.id !== id
+    (option: OptionData): boolean => option.id !== id
   );
   saveOptions(updatedOptions);
+}
+
+export function getOptionIdCounter(): number {
+  return Number(localStorage.getItem('optionIdCounter-makholodova')) || 1;
+}
+
+export function setOptionIdCounter(counter: number): void {
+  localStorage.setItem('optionIdCounter-makholodova', String(counter));
 }
