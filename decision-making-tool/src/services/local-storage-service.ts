@@ -40,7 +40,7 @@ export function deleteOption(id: string): void {
 }
 
 export function getOptionIdCounter(): number {
-  return Number(localStorage.getItem('optionIdCounter-makholodova')) || 1;
+  return Number(localStorage.getItem('optionIdCounter-makholodova'));
 }
 
 export function setOptionIdCounter(counter: number): void {
